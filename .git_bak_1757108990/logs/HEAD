@@ -1,0 +1,16 @@
+0000000000000000000000000000000000000000 10a4d6871126fd0aac258fbd92d7f1fe6f96d606 Your NameOscar <you@example.com> 1634337014 -0500	clone: from https://github.com/oearias/smapac-cliente.git
+10a4d6871126fd0aac258fbd92d7f1fe6f96d606 ab47030d56b871a189aea68fd2880afe8d4a0076 Your NameOscar <you@example.com> 1634410958 -0500	commit: Se anadieron los componentes y vistas para resetear password
+ab47030d56b871a189aea68fd2880afe8d4a0076 c1494c9807b2309063ba15510befcda2935c0e5d Your NameOscar <you@example.com> 1634412447 -0500	commit: Se corrigen errores de links y urls
+c1494c9807b2309063ba15510befcda2935c0e5d 7226cf6e32ed17a4e715a4d3cc0b84f5af2c5424 Your NameOscar <you@example.com> 1634595667 -0500	commit: Se establece el loading en el login
+7226cf6e32ed17a4e715a4d3cc0b84f5af2c5424 ff0ef8718458a01f52f055247acaffbfbc6f8b46 Your NameOscar <you@example.com> 1634688912 -0500	commit: Se hacen los cambios para enviar correo, se anaden spinners y se corrigen algunos bugs
+ff0ef8718458a01f52f055247acaffbfbc6f8b46 61fcac3b2cbbf7227f58d78cad6d64bf16ba51d7 Your NameOscar <you@example.com> 1634855666 -0500	commit: Se corrigen erroreres de formulario de pago
+61fcac3b2cbbf7227f58d78cad6d64bf16ba51d7 5aec819142551c1887c0a5fe8e6f371bc847d252 Your NameOscar <you@example.com> 1634915449 -0500	commit: Se adecuan formularios, spinners y fuentes
+5aec819142551c1887c0a5fe8e6f371bc847d252 ab3c3f40224a61ac9d22c554b6e500d392e3b4dd Your NameOscar <you@example.com> 1636502050 -0600	commit: se anaden los cambios para el recibo digital, fecha de vencimiento y mes facturado
+ab3c3f40224a61ac9d22c554b6e500d392e3b4dd 6a4b6501f521bad33accb64893f83de50af8db39 Your NameOscar <you@example.com> 1637365193 -0600	commit: Se establece que solo el recibo lo imprimen los status Activo
+6a4b6501f521bad33accb64893f83de50af8db39 151c85c2a1d182c38919875c2a3671635542cb60 Your NameOscar <you@example.com> 1639000056 -0600	commit: se agrega gotita loading
+151c85c2a1d182c38919875c2a3671635542cb60 cb47a4b7648ff9c7126153680f53101e4ada1414 Your NameOscar <you@example.com> 1644089328 -0600	commit: Se anade la plantilla para generar el pago desde el movil
+cb47a4b7648ff9c7126153680f53101e4ada1414 52e0f44b0a11732e124af95cdc0ca07bc8328a94 Your NameOscar <you@example.com> 1647570425 -0600	commit: Se automatiza el periodo en validar contrato
+52e0f44b0a11732e124af95cdc0ca07bc8328a94 d7dd08034df877923dcb7f09a86549b63440f397 Your NameOscar <you@example.com> 1651783896 -0500	commit: Se cambian la tarifa por el giro
+d7dd08034df877923dcb7f09a86549b63440f397 0000000000000000000000000000000000000000 TISmapac <tismapac@gmail.com> 1757108269 -0600	Branch: renamed refs/heads/main to refs/heads/main
+d7dd08034df877923dcb7f09a86549b63440f397 d7dd08034df877923dcb7f09a86549b63440f397 TISmapac <tismapac@gmail.com> 1757108269 -0600	Branch: renamed refs/heads/main to refs/heads/main
+d7dd08034df877923dcb7f09a86549b63440f397 455b0235a8d64feb2862d8d57b8da4128e0176ed TISmapac <tismapac@gmail.com> 1757108374 -0600	commit: Importación inicial

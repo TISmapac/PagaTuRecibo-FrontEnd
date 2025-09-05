@@ -1,0 +1,86 @@
+.titleInput{
+    font-weight: 500;
+    font-size: 14px;
+    color: #51545c;
+}
+
+.titleInputBig{
+    font-weight: 500;
+    font-size: 24px;
+    color: #51545c;
+}
+
+.titleName{
+    font-weight: bolder; 
+    font-size: 30px; 
+    color: #3c4257;
+    line-height: 30px;
+}
+
+
+
+@media (max-width: 320px){
+    .long{
+        display: none;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 499px){
+    .long{
+        display: none;
+    }
+
+
+}
+
+@media (min-width: 500px) and (max-width: 768px){
+    .short{
+        display: none;
+    }
+
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px){
+    
+    .short{
+        display: none;
+    }
+
+
+}
+
+@media (min-width: 1025px) and (max-width: 1269px){
+    .short{
+        display: none;
+    }
+
+    .long{
+        margin-left: 30px;
+    }
+}
+
+@media (min-width: 1270px) and (max-width: 1800px){
+    .short{
+        display: none;
+    }
+
+    .long{
+        margin-left: 30px;
+    }
+}
+
+/* Example for styles.css or dashboard.component.css */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #011f4b;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <title>Pago en Línea - SMAPAC</title>
+  <base href="/pagaturecibo">
+  <!--<base href="/pagaturecibo">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+</head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+  integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<body style="background-color: aliceblue;">
+
+  <!--Script para loguearse con Google-->
+  <script>
+    function handleCredentialResponse(response) {
+
+      let urlServer = ( window.location.hostname.includes('localhost') )
+                ? 'http://localhost:3000/api/auth/google'
+                : 'https://restserver-smapac.herokuapp.com/api/auth/google';
+
+      let urlClient = ( window.location.hostname.includes('localhost') )
+                ? 'http://localhost:4200/pagaturecibo/#/dashboard/valida;email='
+                : 'https://smapac.gob.mx/pagaturecibo/#/dashboard/valida;email=';
+
+      //Google Token : ID_TOKEN
+      console.log('id_token', response.credential);
+      const body = { id_token: response.credential }
+
+      fetch(urlServer, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      })
+        .then(resp => resp.json())
+        .then(resp => {
+
+          localStorage.setItem('token', resp.token);
+          localStorage.setItem('email', resp.email);
+          //localStorage.setItem('nombre', resp.nombre)
+
+          console.log(resp);
+
+          window.location = urlClient + resp.email;
+
+
+        })
+        .catch(console.warn);
+    }
+  </script>
+
+  <app-root></app-root>
+
+
+</body>
+</html>

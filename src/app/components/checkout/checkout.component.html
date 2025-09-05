@@ -1,0 +1,94 @@
+<div class="container" style="z-index: 1; position: absolute;">
+  <div class="Card--shadow">
+
+
+    <div class="checkout p-5 mt-5">
+      <div class="checkout-in">
+        <div class="checkout-user">
+        </div>
+
+        <div class="checkout-customer">
+          <div class="title">Hola, <span class="highlight">{{nombre}}</span></div>
+        </div>
+
+        <div class="checkout-card">
+          <div class="checkbox-alert">
+            <br>
+            A continuación debes de introducir los datos de tu tarjeta para procesar el pago del contrato:
+            <span style="font-weight: 700;">{{contrato}}</span>
+            <br>
+            El pago se procesará mediante la plataforma de <b><a href="https://stripe.com/"
+                target="_blank">stripe</a></b>
+          </div>
+
+          <form action="" [formGroup]="form" (submit)="initPay()">
+            <div class="input input-amount">
+              <br>
+              <label class="label">Monto a pagar </label>
+              <div class="row">
+                <div class="col-10">
+                  <input class="form-control" id="amount" type="text" readonly formControlName="amount"
+                    placeholder="0.00">
+                </div>
+
+                <div class="col-2" style="display: flex; justify-content: left; margin-top: 5px;">
+                  <span class="currency" style="font-weight: 600;">Mxn</span>
+                </div>
+
+              </div>
+
+            </div>
+            <hr>
+            <div class="input">
+              <label class="label">Número de tarjeta</label>
+              <div id="card"></div>
+            </div>
+            <hr>
+            <div class="input">
+              <label class="label">CVC</label>
+              <div id="cvc"></div>
+            </div>
+            <hr>
+            <div class="input">
+              <label class="label">Fecha de vencimiento</label>
+              <div id="exp"></div>
+            </div>
+
+            <!--<button class="btn btn-success mt-3 mr-5" [disabled]="form.invalid"
+              type="submit">Pagar</button>-->
+
+              <button type="button" (click)="volver()" class="btn btn-primary mt-3 mr-5">Volver</button>
+
+            <button class="btn btn-success mt-3 mr-5" style="font-weight: 600;"  [disabled]="form.invalid || form.disabled"
+              type="submit">Pagar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading$ | async" class="spinner" style="display: flex; justify-content: center; align-items: center;">
+  <div class="lds-hourglass"></div>
+
+  <!--<div class="box">
+    <svg>
+      <g class="ldl-ani">
+        <g class="ldl-layer">
+          <g class="ldl-ani">
+            <path fill="#e15b64"
+              d="M79.4 59c0 21.6-13.2 31-29.4 31s-29.4-9.3-29.4-31C20.6 32 50 10 50 10s29.4 22 29.4 49z"
+              style="fill: rgb(60, 194, 255);">
+            </path>
+          </g>
+        </g>
+        <g class="ldl-layer">
+          <path stroke-miterlimit="10" fill="none" stroke-linecap="round" stroke-width="8" stroke="#fff"
+            d="M37.7 76.9c-5.9-3.5-8.7-10-8.7-20.2" style="stroke: rgb(255, 255, 255);"></path>
+        </g>
+      </g>
+      <path stroke-miterlimit="10" fill="none" stroke-linecap="round" stroke-width="8" d="M50 80h-1.3"
+        style="stroke: rgb(255, 255, 255);"></path>
+    </svg>
+  </div>-->
+</div>

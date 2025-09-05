@@ -1,0 +1,61 @@
+    <div>
+        <div class="login Card--shadow">
+            <div class="hijo">
+                <form [formGroup]="form" (submit)='onLoginUser()' id="form-authentication">
+                    <div class="prueba"></div>
+                                <!-- <img src="assets/img/smapac-logo-300x190.png" alt="Logo" class="logo mb-3"> -->
+                                <h3 class="mt-3">Inicia sesión</h3>
+                    <div class="form-group">
+
+                        <div>
+                            <span class="titleInput">Correo electrónico</span>
+                        </div>
+                        <input class="form-control form-control-lg" formControlName="email" type="mail" id="email">
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row titleInput">
+
+                            <div class="col">
+                                <span class="titleInput">Contraseña</span>
+
+                            </div>
+
+                        </div>
+
+                        <input type="password" class="form-control form-control-lg" formControlName="password" id="password">
+                    </div>
+
+                    <button id="btn-entrar" type="submit" class="btn btn-primary form-control" style="font-weight: 600;">
+                        <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true">
+                        </span>
+                        Entrar
+                    </button>
+                    
+
+                    <div class="error" id="errorMessage"></div>
+
+                    <div class="register mt-5">
+
+                        <div class="form-group titleInput">
+                            ¿Aún no tienes cuenta? <a href="#" [routerLink]="['/register']">Registrate</a>
+
+
+                            <br>
+
+                            <div class="mt-2">
+                                <span>
+                                    <a href="#" [routerLink]="['/forgot-password']">¿No recuerdas la contraseña?</a>
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>

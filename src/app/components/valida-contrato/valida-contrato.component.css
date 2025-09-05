@@ -1,0 +1,620 @@
+.contenedor{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenedorRow{
+    display: flex;
+}
+
+.hijo{
+    width: 50%;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}
+
+.left{
+    padding-left: 20px;
+    text-align: left;
+}
+
+.right{
+    padding-right: 20px;
+    text-align: right;
+}
+
+.center{
+    text-align: center;
+}
+
+.header-toolbar{
+    display: flex;
+    background-color: #f7fafc;
+    box-shadow: inset 0 -1px #e3e8ee;
+    height: 90px;
+}
+
+.titleInput{
+    font-weight: 500;
+    font-size: 14px;
+    color: #51545c;
+}
+
+.titleInputBig{
+    font-weight: 500;
+    font-size: 24px;
+    color: #51545c;
+}
+
+.titleName{
+    font-weight: bolder; 
+    font-size: 30px; 
+    color: #3c4257;
+    line-height: 30px;
+}
+
+.hijo{
+    display: flex;
+    align-items: center;
+    background-clip: border-box;
+}
+
+.divCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error{
+    color: #cd3d64;
+}
+
+.res{
+    color: #3c4257;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.res2{
+    color: #3c4257;
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.adeudo{
+    font-weight: bold; 
+    font-size: 20px; 
+    color: rgb(13, 127, 221); 
+}
+
+.status{
+    font-size: 18px;
+    font-weight:bold; 
+}
+
+.red{
+    color: #cd3d64
+}
+
+.tableRes tr{
+    height: 35px;
+}
+
+.tableRes td{
+    width: 50%;
+}
+
+.card-shadow{
+    box-shadow: 0 15px 35px 0 rgb(60 66 87 / 8%), 0 5px 15px 0 rgb(0 0 0 / 12%);
+    border-radius: 10px;
+}
+
+.logo{
+    width: 150px;
+}
+
+::placeholder{
+    font-size:  0.9em;
+}
+
+a {
+    cursor: pointer;
+}
+
+@media (max-width: 320px){
+
+    .hijo{
+        width: 100%;
+    }
+
+    .inputContrato{
+        width: 60%;
+    }
+
+    .btnValidar {
+
+        width: 40%;
+        display: flex; 
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .btnValidar button {
+        width: 80%;
+    }
+
+    .btnLabel{
+        display: none;
+    }
+
+    .card-shadow{
+        padding-top: 20px;
+    }
+
+    .titleInput{
+        font-size: 12px;
+    }
+
+    .res{
+        font-size: 14px;
+    }
+
+    .right{
+        margin-left: 10px;
+    }
+
+    .left{
+        margin-right: 10px;
+    }
+
+    td{
+        padding: 6px 0 6px 0;
+    }
+
+    .adeudo {
+        font-size: 16px;
+    }
+
+    .msgInfo{
+        font-size: 14px;
+    }
+
+    .status{
+        font-size: 14px;
+    }
+
+}
+
+@media (min-width: 321px) and (max-width: 499px){
+
+    .hijo{
+        width: 95%;
+    }
+
+    .inputContrato{
+        width: 60%;
+    }
+
+    .btnValidar {
+
+        width: 40%;
+        display: flex; 
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .btnValidar button {
+        width: 100%;
+    }
+
+    .btnIcon{
+        display: none;
+    }
+
+    .card-shadow{
+        padding-top: 30px;
+    }
+
+    .titleInput{
+        font-size: 12px;
+    }
+
+    .res{
+        font-size: 14px;
+    }
+
+    .right{
+        margin-left: 10px;
+    }
+
+    .left{
+        margin-right: 10px;
+    }
+
+    td{
+        padding: 8px 6px 8px 7px;
+    }
+
+    .adeudo{
+        font-size: 16px;
+    }
+
+    .msgInfo {
+        font-size: 14px;
+    }
+
+    .status{
+        font-size: 14px;
+    }
+
+    
+}
+
+@media (min-width: 500px) and (max-width: 768px){
+
+    .hijo{
+        width: 80%;
+    }
+
+
+    .inputContrato{
+        width: 60%;
+    }
+
+    .btnValidar {
+
+        width: 40%;
+        display: flex; 
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .btnValidar button {
+        width: 70%;
+    }
+
+    .btnIcon{
+        display: none;
+    }
+
+    .card-shadow{
+        padding-top: 50px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px){
+
+    .hijo{
+        width: 60%;
+    }
+
+    .cajaFormulario{
+        width: 80%;
+    }
+
+    .inputContrato{
+        width: 40%;
+    }
+
+    .btnValidar {
+
+        width: 20%;
+        display: flex; 
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .btnValidar button {
+        width: 100%;
+    }
+
+    .btnIcon{
+        display: none;
+    }
+
+    .card-shadow{
+        padding-top: 50px;
+    }
+}
+
+/*1025-1269*/
+@media (min-width: 1025px) and (max-width: 4000px){
+
+    .hijo{
+        width: 50%;
+    }
+
+    .cajaFormulario{
+        width: 80%;
+    }
+
+    .inputContrato{
+        width: 60%;
+    }
+
+    .btnValidar {
+
+        width: 20%;
+        display: flex; 
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .btnValidar button {
+        width: 100%;
+    }
+
+    .btnIcon{
+        display: none;
+    }
+
+    .card-shadow{
+        padding-top: 50px;
+    }
+}
+
+/*
+@media (min-width: 1270px) and (max-width: 2200px){
+    .card-shadow{
+        width: 63%;
+    }
+
+    .cajaFormulario{
+        width: 80%;
+    }
+
+    .inputContrato{
+        width: 60%;
+    }
+
+    .btnValidar {
+
+        width: 20%;
+        display: flex; 
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    .btnValidar button {
+        width: 100%;
+    }
+
+    .res{
+        color: #3c4257;
+        font-size: 20px;
+        font-weight: 700;
+        margin-left: 20px;
+    }
+
+    .status{
+        font-size: 24px;
+        margin-left:20px; 
+        font-weight:bold; color: #1ea672
+    }
+
+    .adeudo{
+        font-weight: bold; 
+        font-size: 26px; 
+        color: rgb(13, 127, 221); 
+        margin-left: 20px;
+    }
+
+    .titleName{
+        font-weight: bolder; 
+        font-size: 30px; 
+        color: #3c4257;
+        line-height: 30px;
+    }
+}
+
+*/
+
+.spinner{
+    position: absolute;
+    background-color: rgb(114, 114, 114);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */ filter: alpha(opacity=50); /* IE 5-7 */ -moz-opacity: 0.5; /* Netscape */ -khtml-opacity: 0.5; /* Safari 1.x */ opacity: 0.5;
+
+}
+
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(139, 104, 172);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.lds-hourglass {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-hourglass:after {
+content: " ";
+display: block;
+border-radius: 50%;
+width: 0;
+height: 0;
+margin: 8px;
+box-sizing: border-box;
+border: 32px solid rgb(255, 255, 255);
+border-color: rgb(255, 255, 255) transparent rgb(255, 255, 255) transparent;
+animation: lds-hourglass 1.2s infinite;
+}
+@keyframes lds-hourglass {
+0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+100% {
+    transform: rotate(1800deg);
+}
+}
+
+  /*Animación gotita loading-recibo*/
+
+  .layer{
+      position: fixed;
+      background-color: #0d0d14;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /* IE 8 */ filter: alpha(opacity=80); /* IE 5-7 */ -moz-opacity: 0.8; /* Netscape */ -khtml-opacity: 0.8; /* Safari 1.x */ opacity: 0.8;
+  }
+  
+  .wrap {
+    position: absolute;
+    height: 200px;
+    left: 50%;
+    margin-left: -50px;
+    top: 40%;
+    margin-top: -100px;
+  }
+  
+  .drop {
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    margin-left: -20px;
+    position: absolute;
+    animation: drop 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s infinite;
+  }
+  
+  .drop circle {
+    fill: #007bff;
+  }
+  
+  .drop-outer {
+    position: absolute;
+    box-sizing: border-box;
+    /* border: 1px solid #333; */
+    width: 100px;
+    height: 200px;
+    overflow: hidden;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    background-clip: padding-box;
+  }
+  
+  .ripple {
+    position: absolute;
+    box-sizing: border-box;
+    width: 240px;
+    height: 240px;
+    top: 68px;
+    left: -70px;
+    perspective: 100;
+    transform: rotateX(65deg);
+  }
+  
+  .ripple .ripple-svg {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    opacity: 0;
+  }
+  
+  .ripple .ripple-svg circle {
+     fill: none;
+     stroke: #007bff;
+     stroke-width: 10px;
+     stroke-linejoin: inner;
+  }
+  
+  .ripple-1 {
+    animation: ripple 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s infinite;
+  }
+  
+  .ripple-1 .ripple-svg {
+    animation: fade-in-out 2s linear 0s infinite;
+  }
+  
+  .ripple-1 .ripple-svg circle {
+    animation: border 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s infinite;
+  }
+  
+  .ripple-2 {
+    animation: ripple 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s infinite;
+  }
+  
+  .ripple-2 .ripple-svg {
+    animation: fade-in-out 2s linear 0.2s infinite;
+  }
+  
+  .ripple-2 .ripple-svg circle {
+    animation: border 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s infinite;
+  }
+  
+  .ripple-3 {
+    animation: ripple 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s infinite;
+  }
+  
+  .ripple-3 .ripple-svg {
+    animation: fade-in-out 2s linear 0.35s infinite;
+  }
+  
+  .ripple-3 .ripple-svg circle {
+    animation: border 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s infinite;
+  }
+  
+  
+  
+  @keyframes drop {
+    0% {
+      transform: scale3d(0.01,0.01,0.01) translateY(0)
+    }
+    10% {
+      transform: scale3d(1,1,1) 
+    }
+    44% {
+      transform: scale3d(1,1,1) translateY(200px)
+    }
+    100% {
+      transform: scale3d(1,1,1) translateY(200px)
+    }
+  }
+  
+  @keyframes fade-in-out {
+    0% {opacity: 0}
+    42% {opacity: 0}
+    52% {opacity: 1}
+    65% {opacity: 1}
+    100% {opacity: 0}
+  }
+  
+  @keyframes ripple {
+    0% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
+    42% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
+    100% { transform: rotateX(65deg) scale3d(0.9, 0.9, 0.9) }
+  }
+  
+  @keyframes border {
+    0% { stroke-width: 6px }
+    42% { stroke-width: 6px }
+    100% {stroke-width: 2px }
+  }
+  
+  

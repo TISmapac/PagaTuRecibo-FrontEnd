@@ -1,0 +1,38 @@
+<div class="login Card--shadow" >
+    <div class="hijo">
+        <form [formGroup]="form" (submit)='resetPassword()' id="form-authentication">
+            <div class="prueba"></div>
+            <br>
+            <h3>Restablecer la contraseña</h3>
+            <div class="form-group">
+
+                <div>
+                    <span class="titleInput">Contraseña nueva</span>
+                </div>
+                <input class="form-control form-control-lg" 
+                formControlName="password" type="password" id="password">
+            </div>
+
+
+
+            <div class="form-group pb-2">
+                <div class="row titleInput">
+                    <div class="col">
+                        <span class="titleInput">Confirma tu contraseña.</span>
+
+                    </div>
+                </div>
+
+                <input type="password" class="form-control form-control-lg" formControlName="password2"
+                    id="password2">
+            </div>
+
+            <button id="btn-entrar" type="submit" class="btn btn-primary form-control" style="font-weight: 600;">Continuar</button>
+
+            <div class="error" id="errorMessage"></div>
+
+         
+
+        </form>
+    </div>
+</div>

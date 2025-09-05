@@ -1,0 +1,29 @@
+<p>multipagos works!</p>
+
+<!---
+
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" 
+onsubmit="window.open('about:blank','print_popup','width=1000,height=800');"
+action="https://www.adquiramexico.com.mx:443/mExpress/pago/avanzado" method="post">
+    <input type="hidden" name="importe" value="1" />
+    <input type="hidden" name="referencia" value="123" />
+    <input type="hidden" name="urlretorno"
+        value="https://restserver-smapac.herokuapp.com/api/orders/respuesta.html" />
+    <input name="idexpress" value="2328" />
+    <input type="hidden" name="financiamiento" value="0" />
+    <input type="hidden" name="plazos" value="" />
+    <input type="hidden" name="mediospago" value="110000" />
+    <input type="hidden" name="signature"
+        value="7584e1f4180cd2151c316e1ede042cdfa33282814f48237222dbeda416d4495d" />
+    <input type="image"
+        src="https://s3.amazonaws.com/prod.adquira.mp2.repo.files/verticales/bexpress/resources/img/icon/paybutton_4.png" />
+    </form>-->
+
+
+
+
+    <form  [formGroup]="checkoutForm"  action="https://www.adquiramexico.com.mx:443/mExpress/pago/avanzado" method="POST">
+
+        <button type="submit">Purchase</button>
+
+    </form>

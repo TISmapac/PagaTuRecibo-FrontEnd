@@ -1,0 +1,116 @@
+<div class="container-fluid" style="margin-top: 10px; z-index: 1; position: absolute">
+  <div class="pt-4 pb-3">
+    <!-- <div class="row mb-3">
+        <div class="col">
+            <input type="text" class="form-control">
+        </div>
+        <div class="col">
+            <button class="btn btn-primary">Agregar Contrato</button>
+        </div>
+    </div> -->
+
+    <div class="row mb-3">
+      <div class="col">
+        <input #inputContrato type="text" class="form-control" placeholder="Número de contrato" style="margin-left: 80px;" />
+      </div>
+      <div class="col" style="margin-left: 80px;">
+        <button (click)="findContrato()" class="btn btn-primary">Buscar</button>
+        <button class="ml-3 btn btn-primary">Limpiar</button>
+      </div>
+    </div>
+
+    <table *ngIf="contrato?.contrato" class="table" style="font-size: 14px; margin-left: 80px; width: 89%;">
+
+      
+      <thead class="bg-primary text-white">
+        
+        <tr>
+          
+          <th>Contrato</th>
+          <th>Propietario</th>
+          <th>Dirección</th>
+          <th>Estatus</th>
+          <th>&nbsp;</th>
+         
+        </tr>
+        
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="align-middle">{{contrato?.contrato}}</td>
+          <td class="align-middle">{{contrato?.nombre}}</td>
+          <td class="align-middle">{{contrato?.direccion}} {{contrato?.colonia}}</td>
+          <td class="align-middle">{{contrato?.estatus}}</td>
+          
+          <td>
+            <button *ngIf="contrato?.contrato" class="btn btn-success btn-sm" (click)="addContrato(contrato.contrato)">
+              <i class="fas fa-plus"></i> Añadir
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+      
+    </table>
+    
+    <!-- Mensaje de confirmación después de añadir -->
+<div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="margin: left 80px; width: 80%;">
+  <i class="fas fa-check-circle"></i> Contrato añadido correctamente!
+  <button type="button" class="btn-close" (click)="showSuccessMessage = false"></button>
+</div>
+
+<!-- Mensaje de confirmación después de eliminar -->
+<div *ngIf="showDeleteMessage" class="alert alert-info alert-dismissible fade show mt-3" role="alert">
+  <i class="fas fa-trash-alt"></i> Contrato eliminado correctamente!
+  <button type="button" class="btn-close" (click)="showDeleteMessage = false"></button>
+</div>
+<!-- Mensaje de contrato duplicado -->
+<div *ngIf="showDuplicateMessage" class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+  <i class="fas fa-exclamation-triangle"></i> {{errorMessage}}
+  <button type="button" class="btn-close" (click)="showDuplicateMessage = false; errorMessage = ''"></button>
+</div>
+
+    <div class="text-danger" style="font-weight: bold;">
+      {{contrato?.msg}}
+    </div>
+
+    <div class="card mt-3" style="margin: 80px;">
+      <div class="card-header text-center" style="background-color: #011f4b; color: white;">Mis contratos</div>
+      <div class="card-body p-0">
+
+        <table class="table table-hover table-sm" style="font-size: 14px">
+          <thead class="bg-primary text-white">
+            <tr>
+              <th class="text-center">Contrato</th>
+              <th class="align-middle">Propietario</th>
+              <th class="align-middle">Dirección</th>
+              <th class="align-middle text-center">Estatus</th>
+              <th class="align-middle text-center">Consultar</th>
+              <th class="align-middle text-center">Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contrato of contratos">
+              <td class="text-center">{{ contrato?.contrato }}</td>
+              <td class="align-middle">{{ contrato?.nombre }}</td>
+              <td class="align-middle">{{ contrato?.direccion }} {{ contrato?.colonia }}</td>
+              <td class="align-left text-center">{{ contrato?.estatus }}</td>
+              <td class="text-center">
+                <button class="btn btn-outline-primary" style="border: none" (click)="viewContrato(contrato.contrato)">
+                  <i class="fa-solid fa-magnifying-glass"></i>&nbsp;
+                </button>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-outline-danger" style="border: none" (click)="deleteContrato(contrato.contrato)">
+                  <i class="fa-solid fa-trash-can"></i>&nbsp;
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

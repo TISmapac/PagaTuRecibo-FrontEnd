@@ -1,0 +1,47 @@
+.card-shadow{
+    box-shadow: 0 15px 35px 0 rgb(60 66 87 / 8%), 0 5px 15px 0 rgb(0 0 0 / 12%);
+    border-radius: 10px;
+}
+
+.btn-flutter{
+    background-color: #2B98F0;
+    border-radius: 5px;
+    height: 40px;
+    width: 100%;
+}
+
+.btn_flutter:visited{
+    background-color: blueviolet;
+}
+
+.titulo{
+    color: rgb(124, 124, 124);
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.subtitulo{
+    color: rgb(124, 124, 124);
+    font-size: 14px;
+}
+
+.res{
+    color: rgb(94, 94, 94);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.nombre{
+    color: #2B98F0;
+    font-size: 22px;
+    line-height: 20px;
+    font-weight: 500;
+    letter-spacing: -1px;
+}
+
+.adeudo{
+    color: #2B98F0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
