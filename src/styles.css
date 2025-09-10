@@ -1,4 +1,4 @@
-.container {
+/* .container {
      
    background-image: url("src/assets/img/Carousel_5.jpg"); 
   background-size: fit-content;
@@ -9,5 +9,43 @@
     /* background: url('src/assets/img/Carousel_5.jpg') no-repeat center center;
     background-size: contain;
     width: 100vw;
-    height: 100vh; */
+    height: 100vh;
+} */
+
+body {
+  font-family: var(--body-font-family);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fondo con efecto de difuminado */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('src/assets/img/paga_tu_recibo.jpg') center center / cover no-repeat;
+  filter: blur(8px);
+  transform: scale(1.05); /* evita bordes duros tras el blur */
+  z-index: -1;
+}
+
+/* (Opcional) capa suave de oscurecimiento para mejor contraste de texto */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.20);
+  z-index: -1;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 80%;
+  height: auto;
+  margin: 80px auto;
+  border: 1px solid #eee;
+  padding: 20px;
 }

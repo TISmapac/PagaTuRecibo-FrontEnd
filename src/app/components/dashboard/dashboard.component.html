@@ -16,6 +16,13 @@
                     <i class="fas fa-tint"></i> Reportes de Fugas</a>
             </li>-->
 
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['./valida']" style="color: aliceblue;">
+                    <i class="fas fa-coins"></i>
+                    Paga en línea
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['./contratos']" style="color: aliceblue;">
                     <i class="fa-solid fa-file-lines"></i>
@@ -23,18 +30,14 @@
                 </a>
             </li>  
 
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['./valida']" style="color: aliceblue;">
-                    <i class="fas fa-coins"></i>
-                    Paga en línea
-                </a>
-            </li>
+          
 
             <li class="nav-item dropdown" style="margin-right: 80px;">
 
                 <a class="nav-item nav-link dropdown-toggle mr-md-2" 
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#" style="color: aliceblue;">
                     <i class="fas fa-user"></i>
+                    <span> {{updateNombreService.nombreUsuario}}</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -71,16 +74,15 @@
     </div>
 </nav>
 
-<div style="margin-top: 10px;">
-    <div class="mt-5 ml-3">
-        <span class="titleInputBig" style="margin-left: 80px;">Bienvenido(a): </span>
+<div>
+    <!-- <div class="mt-5 ml-3">
+        <span class="titleInputBig">Bienvenido(a): </span>
         <span class="titleName">
-            
-            <!--{user.nombre}}-->
-            {{updateNombreService.nombreUsuario}}
+
+            <span>{{updateNombreService.nombreUsuario}}</span>
 
         </span>
-    </div>
+    </div> -->
     <router-outlet></router-outlet>
 </div>
 

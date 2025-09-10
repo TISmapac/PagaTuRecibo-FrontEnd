@@ -1,4 +1,6 @@
-<div class="container-fluid" style="margin-top: 10px; z-index: 1; position: absolute">
+<div class="container-fluid" style="margin-top: 10px; margin-left: 80px; position: absolute">
+  <br><br>
+  <h2 style="text-align: center; font-weight: bolder; color: aliceblue; margin-bottom: 20px;">Mis contratos</h2>
   <div class="pt-4 pb-3">
     <!-- <div class="row mb-3">
         <div class="col">
@@ -19,7 +21,7 @@
       </div>
     </div>
 
-    <table *ngIf="contrato?.contrato" class="table" style="font-size: 14px; margin-left: 80px; width: 89%;">
+    <table *ngIf="contrato?.contrato" class="table" style="font-size: 14px; margin-left: 80px; width: 80%;">
 
       
       <thead class="bg-primary text-white">
@@ -55,18 +57,18 @@
     </table>
     
     <!-- Mensaje de confirmación después de añadir -->
-<div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+<div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="margin-left: 80px; width: 80%;">
   <i class="fas fa-check-circle"></i> Contrato añadido correctamente!
   <button type="button" class="btn-close" (click)="showSuccessMessage = false"></button>
 </div>
 
 <!-- Mensaje de confirmación después de eliminar -->
-<div *ngIf="showDeleteMessage" class="alert alert-info alert-dismissible fade show mt-3" role="alert">
+<div *ngIf="showDeleteMessage" class="alert alert-info alert-dismissible fade show mt-3" role="alert" style="margin-left: 80px; width: 80%;">
   <i class="fas fa-trash-alt"></i> Contrato eliminado correctamente!
   <button type="button" class="btn-close" (click)="showDeleteMessage = false"></button>
 </div>
 <!-- Mensaje de contrato duplicado -->
-<div *ngIf="showDuplicateMessage" class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+<div *ngIf="showDuplicateMessage" class="alert alert-warning alert-dismissible fade show mt-3" role="alert" style="margin-left: 80px; width: 80%;">
   <i class="fas fa-exclamation-triangle"></i> {{errorMessage}}
   <button type="button" class="btn-close" (click)="showDuplicateMessage = false; errorMessage = ''"></button>
 </div>
