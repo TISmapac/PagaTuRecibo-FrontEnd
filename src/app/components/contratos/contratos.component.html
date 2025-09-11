@@ -1,6 +1,6 @@
-<div class="container-fluid" style="margin-top: 10px; margin-left: 80px; position: absolute">
-  <br><br>
-  <h2 style="text-align: center; font-weight: bolder; color: aliceblue; margin-bottom: 20px;">Mis contratos</h2>
+<div class="container-fluid" style="margin-top: 10px; margin-left: 80px; z-index: 1; position: absolute;">
+  <br>
+  <h2 style="text-align: center; font-weight: bolder; color: white; margin-bottom: 20px;">Mis contratos</h2>
   <div class="pt-4 pb-3">
     <!-- <div class="row mb-3">
         <div class="col">
@@ -13,7 +13,7 @@
 
     <div class="row mb-3">
       <div class="col">
-        <input #inputContrato type="text" class="form-control" placeholder="Número de contrato" style="margin-left: 80px;" />
+        <input #inputContrato type="text" class="form-control" placeholder="Ingrese el número de contrato para ser agregado" style="margin-left: 80px;" />
       </div>
       <div class="col" style="margin-left: 80px;">
         <button (click)="findContrato()" class="btn btn-primary">Buscar</button>
@@ -115,4 +115,5 @@
       </div>
     </div>
   </div>
+
 </div>

@@ -40,7 +40,7 @@ body::after {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+  background: rgba(255, 255, 255, 0); /* Fondo blanco con transparencia */
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   width: 80%;
@@ -49,3 +49,12 @@ body::after {
   border: 1px solid #eee;
   padding: 20px;
 }
+
+ .footer {
+      text-align: center;
+      padding: 10px 0;
+      color: rgb(255, 255, 255);
+      position: absolute;
+      bottom: 0;
+      width: 100%;   
+  }
