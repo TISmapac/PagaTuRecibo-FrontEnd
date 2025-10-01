@@ -1,17 +1,17 @@
-<div class="container-fluid" style="margin-top: 10px; margin-left: 80px; z-index: 1; position: absolute;">
-  <br>
-  <h2 style="text-align: center; font-weight: bolder; color: white; margin-bottom: 20px;">Mis contratos</h2>
-  <div class="pt-4 pb-3">
-    <!-- <div class="row mb-3">
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <button class="btn btn-primary">Agregar Contrato</button>
-        </div>
-    </div> -->
 
+
+  <div style="position: relative; z-index: 1; margin-left: 120px;">
+    <h2 style="text-align: center; margin-bottom: 20px; color: #ffffff;">Mis contratos</h2>
+    <!-- <div class="row mb-3">
+      <div class="col">
+          <input type="text" class="form-control">
+      </div>
+      <div class="col">
+          <button class="btn btn-primary">Agregar Contrato</button>
+      </div>
+  </div> -->
     <div class="row mb-3">
+      
       <div class="col">
         <input #inputContrato type="text" class="form-control" placeholder="Ingrese el número de contrato para ser agregado" style="margin-left: 80px;" />
       </div>
@@ -21,10 +21,10 @@
       </div>
     </div>
 
-    <table *ngIf="contrato?.contrato" class="table" style="font-size: 14px; margin-left: 80px; width: 80%;">
+    <table *ngIf="contrato?.contrato" class="table" style="font-size: 14px; margin-left: 80px; width: 80%; border: 1px solid #ddd;">
 
       
-      <thead class="bg-primary text-white">
+      <thead>
         
         <tr>
           
@@ -47,18 +47,17 @@
           
           <td>
             <button *ngIf="contrato?.contrato" class="btn btn-success btn-sm" (click)="addContrato(contrato.contrato)">
-              <i class="fas fa-plus"></i> Añadir
+              <i class="fas fa-plus"></i> Vincular
             </button>
           </td>
 
         </tr>
-      </tbody>
-      
+      </tbody>  
     </table>
     
     <!-- Mensaje de confirmación después de añadir -->
 <div *ngIf="showSuccessMessage" class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="margin-left: 80px; width: 80%;">
-  <i class="fas fa-check-circle"></i> Contrato añadido correctamente!
+  <i class="fas fa-check-circle"></i> Contrato vinculado correctamente!
   <button type="button" class="btn-close" (click)="showSuccessMessage = false"></button>
 </div>
 
@@ -77,14 +76,15 @@
       {{contrato?.msg}}
     </div>
 
-    <div class="card mt-3" style="margin: 80px;">
-      <div class="card-header text-center" style="background-color: #011f4b; color: white;">Mis contratos</div>
+    <div class="card mt-3" style="width: fit-content;">
+
+      <div class="card-header text-center" style="background-color: #011f4b; color: white;">Contratos vinculados</div>
       <div class="card-body p-0">
 
-        <table class="table table-hover table-sm" style="font-size: 14px">
+        <table class="table table-hover table-sm" style="font-size: 14px; width: 100%; border: 1px solid #ddd;">
           <thead class="bg-primary text-white">
             <tr>
-              <th class="text-center">Contrato</th>
+              <th class="aling-middle text-center">Contrato</th>
               <th class="align-middle">Propietario</th>
               <th class="align-middle">Dirección</th>
               <th class="align-middle text-center">Estatus</th>
@@ -94,7 +94,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let contrato of contratos">
-              <td class="text-center">{{ contrato?.contrato }}</td>
+              <td class="align-middle">{{ contrato?.contrato }}</td>
               <td class="align-middle">{{ contrato?.nombre }}</td>
               <td class="align-middle">{{ contrato?.direccion }} {{ contrato?.colonia }}</td>
               <td class="align-left text-center">{{ contrato?.estatus }}</td>
@@ -110,10 +110,10 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> 
 
       </div>
     </div>
+    <br>
   </div>
 
-</div>
