@@ -24,6 +24,7 @@ export class ContratosComponent implements OnInit {
   showSuccessMessage: boolean = false;
   showDeleteMessage: boolean = false;
   showDuplicateMessage: boolean = false; // Nueva variable para contrato duplicado
+  showNotFoundMessage: boolean = false; // Nueva variable para contrato no encontrado
   errorMessage: string = 'El contrato ya se encuentra vinculado a su cuenta'; // Mensaje de error específico
 
 
@@ -45,11 +46,13 @@ export class ContratosComponent implements OnInit {
     this.getContratos();
   }
 
+  
+
   getContratos(){
 
     this.contratoService.getContratosEmail(this.user.email).subscribe(res => {
 
-      console.log(res);
+      console.log('Inicia', res);
       
       this.contratos = res
 
@@ -82,12 +85,44 @@ export class ContratosComponent implements OnInit {
     this.router.navigate(['/dashboard/valida', {contrato: contrato}]);
   }
 
-  findContrato(){
-
-    let contrato = this.inputContrato.nativeElement.value;
-    this.contratoService.getContrato(contrato).subscribe( res => {
-      this.contrato = res;
-    });
+   findContrato(){
+    let contratoNumber = this.inputContrato.nativeElement.value;
+    if (!contratoNumber) {
+      alert('Por favor ingrese un número de contrato');
+      return;
+    }
+    
+    this.contratoService.getContrato(Number(contratoNumber)).subscribe( 
+      (res: any) => {
+        // Verificar si la respuesta contiene un mensaje de error del backend
+        if (res.msg && res.msg.includes('No se encontró ningun contrato')) {
+          this.showNotFoundMessage = true;
+          this.errorMessage = res.msg;
+          this.contrato = {} as Contrato;
+          
+          setTimeout(() => {
+            this.showNotFoundMessage = false;
+            this.errorMessage = '';
+          }, 5000);
+        } else {
+          this.contrato = res;
+          // Verificar si el contrato ya está vinculado
+          this.checkIfContractAlreadyAdded(Number(contratoNumber));
+        }
+      },
+      (error) => {
+        console.error('Error al buscar contrato:', error);
+        // Manejar errores de conexión u otros errores
+        this.showNotFoundMessage = true;
+        this.errorMessage = 'Error al buscar el contrato. Por favor, intente nuevamente.';
+        this.contrato = {} as Contrato;
+        
+        setTimeout(() => {
+          this.showNotFoundMessage = false;
+          this.errorMessage = '';
+        }, 5000);
+      }
+    );
   }
 
   // Verificar si el contrato ya está en la lista del usuario

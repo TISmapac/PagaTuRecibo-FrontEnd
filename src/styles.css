@@ -24,7 +24,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url('src/assets/img/paga_tu_recibo.jpg') center center / cover no-repeat;
+  background: url('src/assets/img/pago_en_linea.jpg') center center / cover no-repeat;
   filter: blur(8px);
   transform: scale(1.10); /* evita bordes duros tras el blur */
   z-index: -1;
