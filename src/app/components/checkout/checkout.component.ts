@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { WindowRef } from "../../WindowRef";
 import { environment } from "../../../environments/environment";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { RestService } from "../../services/rest.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toaster } from "ngx-toast-notifications";
@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
   cardNumber: any;
   cardCvv: any;
   cardExp: any;
-  form: FormGroup = new FormGroup({})
+  form: UntypedFormGroup = new UntypedFormGroup({})
   id!: string;
   orderData!: any;
 
@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
   isLoading$ = this.spinnerService.isLoadingCheckout$;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private toaster: Toaster,
     private cd: ChangeDetectorRef,
     private restService: RestService,

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ContratoService } from '../../services/contrato.service';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, FormBuilder } from '@angular/forms';
 import { RestService } from '../../services/rest.service';
 import { SpinnerService } from '../../services/spinner.service';
 import { LoadingService } from '../../services/loading.service';
@@ -20,13 +20,13 @@ export class ValidaContratoComponent implements OnInit {
 
 
   createFormGroup() {
-    return new FormGroup({
-      name: new FormControl(['', [Validators.required]]),
-      amount: new FormControl(['', [Validators.required, Validators.min(5)]])
+    return new UntypedFormGroup({
+      name: new UntypedFormControl(['', [Validators.required]]),
+      amount: new UntypedFormControl(['', [Validators.required, Validators.min(5)]])
     })
   }
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   contratos: Contrato[] = [];
   contrato!: Contrato;

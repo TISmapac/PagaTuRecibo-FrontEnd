@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { UpdateNombreService } from '../../services/update-nombre.service';
 import { SpinnerService } from '../../services/spinner.service';
 
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     email: ''
   }
 
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
 
   isLoadingName$ = this.spinnerService.isLoadingName$;
   //isLoadingRecibo$ = this.spinnerService.isLoadingRecibo$;
@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     public updateNombreService: UpdateNombreService,
     private spinnerService: SpinnerService,
-    builder: FormBuilder
+    builder: UntypedFormBuilder
   ) {
     this.userForm = builder.group({
       id: [''],

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -12,13 +12,13 @@ declare var $: any;
 })
 export class ResetComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({})
+  form: UntypedFormGroup = new UntypedFormGroup({})
 
   private token='';
 
   constructor(
     private route: ActivatedRoute,
-    private  fb: FormBuilder,
+    private  fb: UntypedFormBuilder,
     private authService: AuthService,
     private router: Router
   ) { }

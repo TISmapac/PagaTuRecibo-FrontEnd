@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { SpinnerService } from '../../services/spinner.service';
 import { LoadingService } from '../../services/loading.service';
 
@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  form: FormGroup = new FormGroup({})
+  form: UntypedFormGroup = new UntypedFormGroup({})
 
   constructor(
     private authService: AuthService,
     public router: Router,
-    private  fb: FormBuilder,
+    private  fb: UntypedFormBuilder,
     private spinnerService: SpinnerService,
     private loadingService: LoadingService
     ) { }
