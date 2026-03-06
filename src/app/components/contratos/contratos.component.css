@@ -1,0 +1,71 @@
+/* contratos.component.css */
+
+/* Contenedor principal usando grid para mejor control */
+.contratos-grid {
+  display: grid;
+  gap: 30px;
+}
+
+/* Animación de shimmer para el skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Estilos base del skeleton */
+.skeleton-loader {
+  background: linear-gradient(to right, #e9ecef 8%, #dee2e6 18%, #e9ecef 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite ease-in-out;
+  border-radius: 8px;
+  min-height: 1em;
+}
+
+/* Skeleton para la tabla de contratos vinculados */
+.skeleton-table-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 1.5fr 100px 80px 100px; /* Ajusta según tus columnas */
+  gap: 10px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #e9ecef;
+  align-items: center;
+}
+
+.skeleton-table-row .skeleton-loader {
+  height: 24px; /* Altura similar a una celda de texto */
+}
+
+/* Clase para ocultar elementos visualmente pero mantenerlos accesibles */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Ajustes para los mensajes */
+.messages-container {
+  margin-left: 0; /* Lo ajustamos al nuevo layout */
+  width: 100%;
+}
+
+/* Hacer que las tablas sean responsivas */
+@media (max-width: 768px) {
+  .main-card {
+    padding: 20px 15px;
+  }
+
+  .skeleton-table-row {
+    grid-template-columns: 80px 1fr 1fr 80px 50px 50px;
+    gap: 5px;
+    font-size: 0.8rem;
+  }
+}

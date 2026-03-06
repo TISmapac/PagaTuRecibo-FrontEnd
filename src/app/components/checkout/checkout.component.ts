@@ -4,7 +4,7 @@ import { environment } from "../../../environments/environment";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { RestService } from "../../services/rest.service";
 import { ActivatedRoute, Router } from '@angular/router';
-import { Toaster } from "ngx-toast-notifications";
+import { ToastrService } from "ngx-toastr";
 import { SpinnerService } from '../../services/spinner.service';
 import { LoadingService } from '../../services/loading.service';
 
@@ -41,7 +41,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private toaster: Toaster,
+    private toastr: ToastrService,
     private cd: ChangeDetectorRef,
     private restService: RestService,
     private route: ActivatedRoute,
@@ -182,7 +182,7 @@ export class CheckoutComponent implements OnInit {
 
             if(res.data.status == "succeeded"){
 
-              this.toaster.open({ text: 'Cargo realizado con Éxito', caption: 'Enhorabuena!', type: 'success' })
+              this.toastr.success('Cargo realizado con Éxito', 'Enhorabuena!')
 
               setTimeout(() => {
     
@@ -196,7 +196,7 @@ export class CheckoutComponent implements OnInit {
                 error = ": "+res.data.last_payment_error['message'];
               }
 
-              this.toaster.open('Error con el pago'+error);
+              this.toastr.error('Error con el pago');
               this.spinnerService.hide();
 
 
@@ -206,11 +206,11 @@ export class CheckoutComponent implements OnInit {
 
         })
         .catch(() => {
-          this.toaster.open('Error con el pago')
+          this.toastr.error('Error con el pago');
           this.spinnerService.hide();
         })
     } catch (e) {
-      this.toaster.open({ text: 'Algo ocurrió mientras procesaba el pago', caption: 'ERROR', type: 'danger' })
+      this.toastr.error('Algo ocurrió mientras procesaba el pago', 'ERROR')
       this.spinnerService.hide();
     }
 

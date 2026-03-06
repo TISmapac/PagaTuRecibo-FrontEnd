@@ -11,7 +11,7 @@
 
         <div class="contenedorRow hijo">
 
-            <input class="form-control pr-5 mr-3" placeholder="Número de contrato" id="contratoId" type="number" min="0"/>
+            <input class="form-control pr-5 mr-3 text-center" placeholder="Número de contrato" id="contratoId" type="number" min="0"/>
     
 
             <div>&nbsp;</div>
@@ -105,14 +105,14 @@
                         <tr>
                             <td class="right titleInput">Mes facturado:</td>
                             <td>
-                                <span class="res">{{ contrato?.mes_facturado }}</span>
+                                <span class="res">{{ contrato.mes_facturado }}</span>
                             </td>
                         </tr>
                         
                         <tr>
                             <td class="right titleInput">Fecha de vencimiento:</td>
                             <td>
-                                <span class="res">{{ contrato?.fecha_vencimiento }}</span>
+                                <span class="res">{{ contrato.fecha_vencimiento }}</span>
                             </td>
                         </tr>
     
@@ -164,7 +164,7 @@
                             <td class="adeudo">
                                 <div class="row">
                                     <div class="col-9" style="text-align: right; border-top: 3px solid rgb(32, 32, 32)">
-                                        ${{ contrato?.adeuda_reconex_total | number: "1.2-5" }}
+                                        ${{ contrato.adeuda_reconex_total | number: "1.2-5" }}
                                     </div>
                                     <div class="col"></div>
                                 </div>

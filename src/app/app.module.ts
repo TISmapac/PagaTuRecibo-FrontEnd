@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
-import { TOAST_NOTIFICATIONS_CONFIG, ToastNotificationsModule } from "ngx-toast-notifications";
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { InfoPasswordComponent } from './components/info-password/info-password.component';
@@ -97,17 +97,18 @@ const routes: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastNotificationsModule,
+    ToastrModule.forRoot({
+    timeOut: 6000,
+    positionClass: 'toast-top-center',
+    preventDuplicates: true
+  }),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     AuthService,
     AuthGuard,
-    [
-      interceptorProviders
-    ],
+      interceptorProviders,
 
-    { provide: TOAST_NOTIFICATIONS_CONFIG, useValue: { duration: 6000, type: 'dark', position: 'top-center' } },
   ],
   bootstrap: [AppComponent]
 })
