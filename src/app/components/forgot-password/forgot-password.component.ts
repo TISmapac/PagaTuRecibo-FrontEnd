@@ -3,8 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { SpinnerService } from '../../services/spinner.service';
 
-declare var $: any;
-
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -13,6 +11,9 @@ declare var $: any;
 export class ForgotPasswordComponent implements OnInit {
 
   isLoading$ = this.spinnerService.isLoading$;
+
+  isSubmitting = false;
+  errorMessage = '';
 
   user = {
     email: ''
@@ -29,14 +30,12 @@ export class ForgotPasswordComponent implements OnInit {
 
   resetPassword() {
 
-    let error=''
-
-    $('#btnForgot').attr('disabled',true);
-
+    this.errorMessage = '';
+    this.isSubmitting = true;
 
     this.authService.forgotPassword(this.user.email).subscribe(res => {
 
-      $('#btnForgot').attr('disabled',false);
+      this.isSubmitting = false;
 
       if (res.info == 'OK') {
 
@@ -44,20 +43,17 @@ export class ForgotPasswordComponent implements OnInit {
         this.router.navigate(['/info-email']);
 
       }else{
-        $('#errorMessage').text(res)
+        this.errorMessage = res;
       }
 
     }, err => {
 
+      this.isSubmitting = false;
 
       if (err.error) {
-        error = err.error.msg;
-
-        if (err.error.errors) {
-          error = err.error.errors[0]['msg'];
-        }
-
-        $('#errorMessage').text(error)
+        this.errorMessage = err.error.errors
+          ? err.error.errors[0]['msg']
+          : err.error.msg;
       }
     })
   }

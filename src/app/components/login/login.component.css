@@ -1,8 +1,27 @@
-.container {
-    background: url('src/assets/img/Carousel_5.jpg') no-repeat center center fixed;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
+/* Fondo institucional SOLO para el login: imagen difuminada + overlay oscuro
+   (solicitado por dirección). El resto de la app conserva el fondo claro. */
+:host::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("src/assets/img/pago_en_linea.webp") center center / cover no-repeat;
+    filter: blur(8px) brightness(0.85);
+    transform: scale(1.05);
+    z-index: -2;
+}
+
+:host::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* El footer simple del login queda sobre fondo oscuro: texto claro y legible.
+   (No se cambia el footer de registro/olvidé contraseña, que van sobre fondo claro.) */
+:host .footer {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .logo-white {
@@ -45,7 +64,7 @@
 /* Sección de bienvenida - Lado izquierdo */
 .welcome-section {
     width: 45%;
-    background: linear-gradient(135deg, #011f4b 0%, #023a7a 50%, #0355a9 75%, #0470d8 100%);
+    background: linear-gradient(135deg, #003a78 0%, #004a99 55%, #0066cc 100%);
     display: flex;
     align-items: center;
     justify-content: center;

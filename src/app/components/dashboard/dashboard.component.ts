@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { UpdateNombreService } from '../../services/update-nombre.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
     public updateNombreService: UpdateNombreService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -26,16 +28,9 @@ export class DashboardComponent implements OnInit {
   }
 
   logOut(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    localStorage.removeItem('nombre');
-    localStorage.removeItem('id');
-    localStorage.removeItem('io-temp');
-
+    this.authService.logout();
     location.reload();
     this.router.navigate(['/']);
-
-    
   }
 
   getUser(){

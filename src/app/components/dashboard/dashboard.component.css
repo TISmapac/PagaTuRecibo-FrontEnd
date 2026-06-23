@@ -11,76 +11,58 @@
 }
 
 .titleName{
-    font-weight: bolder; 
-    font-size: 30px; 
+    font-weight: bolder;
+    font-size: 30px;
     color: #3c4257;
     line-height: 30px;
 }
 
+/* ---------- Navbar (estilo portal: blanco + borde ámbar + doble logo) ---------- */
+.brand-navbar {
+    background-color: #ffffff;
+    border-bottom: 2px solid rgba(245, 158, 11, 0.7); /* ámbar */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
 
+.navbar-logo {
+    height: 44px;
+    width: auto;
+}
 
-@media (max-width: 320px){
-    .long{
-        display: none;
+/* Divisor vertical entre los dos logos */
+.brand-divider {
+    width: 1px;
+    height: 40px;
+    background-color: #e5e7eb;
+}
+
+/* Enlaces oscuros con hover ámbar (igual que el portal) */
+.brand-nav-link {
+    color: #374151;
+    font-weight: 600;
+}
+
+.brand-nav-link:hover,
+.brand-nav-link:focus {
+    color: var(--brand-amber-dark);
+}
+
+/* En móvil el menú se despliega vertical: un poco de aire entre opciones */
+@media (max-width: 767.98px) {
+    .navbar-nav .nav-item {
+        padding: 4px 0;
     }
 }
 
-@media (min-width: 321px) and (max-width: 499px){
-    .long{
-        display: none;
-    }
-
-
+/* Layout de footer pegajoso: el contenido empuja el footer al fondo en páginas cortas */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-@media (min-width: 500px) and (max-width: 768px){
-    .short{
-        display: none;
-    }
-
-
-}
-
-@media (min-width: 769px) and (max-width: 1024px){
-    
-    .short{
-        display: none;
-    }
-
-
-}
-
-@media (min-width: 1025px) and (max-width: 1269px){
-    .short{
-        display: none;
-    }
-
-    .long{
-        margin-left: 30px;
-    }
-}
-
-@media (min-width: 1270px) and (max-width: 1800px){
-    .short{
-        display: none;
-    }
-
-    .long{
-        margin-left: 30px;
-    }
-}
-
-/* Example for styles.css or dashboard.component.css */
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 100;
-  background-color: #011f4b;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
+.dashboard-content {
+  flex: 1 0 auto;
 }
 
 

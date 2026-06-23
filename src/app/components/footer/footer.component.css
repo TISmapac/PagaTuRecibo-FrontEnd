@@ -1,0 +1,123 @@
+/* Footer institucional, replica del portal (cyan-900 + acentos ámbar) */
+.site-footer {
+  background-color: var(--brand-footer); /* cyan-900 */
+  color: #ecfeff;                         /* cyan-50 */
+}
+
+/* Columna de marca */
+.footer-logo-box {
+  display: inline-flex;
+  background: #ffffff;
+  border-radius: var(--brand-radius);
+  padding: 10px 14px;
+}
+.footer-logo-box img {
+  height: 44px;
+  width: auto;
+}
+
+.footer-desc {
+  font-size: 0.875rem;
+  color: rgba(207, 250, 254, 0.8);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brand-amber);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.footer-social:hover {
+  color: #fcd34d;
+}
+
+/* Títulos de columna */
+.footer-title {
+  font-family: var(--brand-font-heading);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* Listas de enlaces */
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-list li {
+  margin-bottom: 0.5rem;
+}
+.footer-list a {
+  color: rgba(207, 250, 254, 0.8);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-list a:hover {
+  color: var(--brand-amber);
+}
+
+/* Contacto */
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(207, 250, 254, 0.8);
+}
+.footer-contact li {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 0.75rem;
+}
+.footer-contact i {
+  color: var(--brand-amber);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Barra inferior */
+.footer-bottom {
+  border-top: 1px solid #042f60; /* borde superior igual al del portal */
+}
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(207, 250, 254, 0.7);
+}
+.footer-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brand-amber);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.footer-back:hover {
+  color: #fcd34d;
+}
+.footer-carmen {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.footer-carmen img {
+  height: 40px;
+  width: auto;
+}
+.footer-carmen span {
+  font-size: 0.75rem;
+  color: rgba(207, 250, 254, 0.7);
+  transition: color 0.2s ease;
+}
+.footer-carmen:hover span {
+  color: var(--brand-amber);
+}

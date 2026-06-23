@@ -7,9 +7,8 @@ import { RestService } from '../../services/rest.service';
 import { SpinnerService } from '../../services/spinner.service';
 import { LoadingService } from '../../services/loading.service';
 import { ReciboService } from '../../services/recibo.service';
+import { AuthService } from '../../services/auth.service';
 import { Contrato } from '../../models/contrato';
-
-declare var $: any;
 
 @Component({
   selector: 'app-valida-contrato',
@@ -57,6 +56,7 @@ export class ValidaContratoComponent implements OnInit {
   is$ = this.spinnerService.isLoadingPago$
 
   contratoParam !: number;
+  contratoId: number | null = null;
 
   constructor(
     private contratoService: ContratoService,
@@ -66,7 +66,8 @@ export class ValidaContratoComponent implements OnInit {
     private router: Router,
     public spinnerService: SpinnerService,
     public loadingService: LoadingService,
-    private reciboService: ReciboService
+    private reciboService: ReciboService,
+    private authService: AuthService
   ) {
     this.form = this.createFormGroup();
 
@@ -92,70 +93,10 @@ export class ValidaContratoComponent implements OnInit {
 
       this.getUser();
 
-      $("#contratoId").keyup((event: any) => {
+    } else {
 
-        let valor = $("#contratoId").val();
-
-        if (valor.length > 0) {
-          $("#btnContrato").removeAttr('disabled');
-        } else {
-          $("#btnContrato").attr('disabled', true);
-        }
-
-        if (event.keyCode === 13) {
-
-          if(valor.length > 0){
-            this.getContrato();
-          }
-
-        }
-
-      });
-
-      $("#contratoId").change(function (event: any) {
-
-        let valor = $("#contratoId").val();
-
-        if (valor.length > 0) {
-
-          $("#btnContrato").removeAttr('disabled');
-        } else {
-          $("#btnContrato").attr('disabled', true);
-        }
-      });
-
-      $("#btnContrato").click(() => {
-        if (this.isLoading$) {
-          $("#btnContrato").attr('disabled', true);
-        }
-      });
-
-    }else{
-
-      //Este es el camino cuando viene desde mis contratos 
-
-      $("#contratoId").keyup((event: any) => {
-
-        let valor = $("#contratoId").val();
-
-        if (valor.length > 0) {
-          $("#btnContrato").removeAttr('disabled');
-        } else {
-          $("#btnContrato").attr('disabled', true);
-        }
-
-        if (event.keyCode === 13) {
-
-          if(valor.length > 0){
-            this.getContrato();
-          }
-
-        }
-
-      });
-
-      $('#contratoId').val(this.contratoParam);
-
+      //Este es el camino cuando viene desde mis contratos
+      this.contratoId = Number(this.contratoParam);
       this.getContrato();
     }
 
@@ -170,20 +111,20 @@ export class ValidaContratoComponent implements OnInit {
     });
   }
 
+  // Limpia el buscador y el resultado para consultar otro contrato.
+  limpiar() {
+    this.contratoId = null;
+    this.contrato = {} as Contrato;
+    this.infoMessage = '';
+  }
+
   getContrato() {
 
-    $("#btnContrato").attr('disabled', true);
-
-    let id = $('#contratoId').val();
+    let id = Number(this.contratoId);
 
     this.contratoService.getContrato(id).subscribe(res => {
 
-      if (res) {
-        $("#btnContrato").removeAttr('disabled');
-      }
-
       if (res.fecha_suspension) {
-        console.log(res.fecha_suspension);
         this.fechaSuspension = this.formateaFechaSuspension(res.fecha_suspension.toString());
 
         this.puedePagar = this.calculaFechaSuspension(this.fechaSuspension);
@@ -191,8 +132,6 @@ export class ValidaContratoComponent implements OnInit {
 
       this.contrato = res;
       this.infoMessage = '';
-
-      console.log(res);
 
       this.referencia = this.generateReferencia(this.contrato?.contrato, this.contrato?.flag_reconexion);
 
@@ -310,11 +249,8 @@ export class ValidaContratoComponent implements OnInit {
 
   tocheckout(importe: number, contrato: number, nombre: string, email: string) {
 
-    $("#btnGenPago").attr('disabled', true);
-
     this.restService.generateOrder(contrato, importe, nombre, email).subscribe((data) => {
 
-      $('#btnGenPago').attr('disabled', false);
       this.router.navigate(['/dashboard/checkout', { localizator: data?.localizator, amount: importe, nombre: nombre, contrato: contrato }])
     })
   }
@@ -396,8 +332,8 @@ export class ValidaContratoComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   multipagos() {

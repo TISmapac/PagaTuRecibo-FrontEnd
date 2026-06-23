@@ -1,6 +1,8 @@
-<div class="card-shadow pt-4 pb-3 pl-3 pr-3 m-3">
+<br>
+<div class="card-shadow pb-3 pl-3 pr-3 m-3">
   <div class="row">
     <div class="col" style="text-align: center">
+      <br>
       <div class="subtitulo">Contrato:</div>
       <div class="titulo mb-3">
         {{ contratoP }}
@@ -35,13 +37,34 @@
             </span>
           </ng-template>
         </div>
-        <div class="subtitulo mt-3">Adeudo:</div>
-        <div class="adeudo">
-          {{ adeudaP }}
+        <!--Aquí puedes agregar el botón de pago solo si el estatus es "Activo" y el adeudo no es "$0.00"-->
+        <div *ngIf="estatusP == 'Activo'; else suspendidoInfo">
+          <div class="subtitulo mt-3">Adeudo:</div>
+          <div class="adeudo">
+            {{ adeudaP }}
+          </div>
         </div>
+
+        <ng-template #suspendidoInfo>
+          <div class="subtitulo mt-3">Adeudo:</div>
+          <div class="adeudo">${{ adeudaPadron | number: "1.2-2" }}</div>
+
+          <div class="subtitulo mt-3">Reconexión:</div>
+          <div class="adeudo">${{ reconexion | number: "1.2-2" }}</div>
+
+          <div class="subtitulo mt-3">Total a pagar:</div>
+          <div class="adeudo">${{ adeudaReconexTotal | number: "1.2-2" }}</div>
+        </ng-template>
+
         <div class="subtitulo mt-3">Fecha Vencimiento:</div>
         <div class="res mb-5">
           {{ fechaVencP }}
+        </div>
+        <!--Mostrar el mensaje de advertencia si el estatus es "Suspendido"-->
+        <div *ngIf="estatusP == 'Suspendido'" class="alert alert-warning mt-4">
+          No es posible realizar el pago ni descargar el recibo de este contrato
+          por este medio. Debe presentarse en las oficinas de la institución
+          para regularizar su servicio y cubrir los cargos correspondientes.
         </div>
 
         <form
@@ -87,5 +110,5 @@
     </div>
   </div>
 </div>
-<br>
-<br>
+<br />
+<br />

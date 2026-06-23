@@ -26,6 +26,8 @@ export class ContratosComponent implements OnInit {
   showDuplicateMessage: boolean = false; // Nueva variable para contrato duplicado
   showNotFoundMessage: boolean = false; // Nueva variable para contrato no encontrado
   errorMessage: string = 'El contrato ya se encuentra vinculado a su cuenta'; // Mensaje de error específico
+  isLoading: boolean = true; // Estado de carga para mostrar el skeleton
+  skeletonRows = Array(3); // Cantidad de filas skeleton a mostrar mientras carga
 
 
   constructor(
@@ -50,13 +52,19 @@ export class ContratosComponent implements OnInit {
 
   getContratos(){
 
-    this.contratoService.getContratosEmail(this.user.email).subscribe(res => {
+    this.isLoading = true;
 
-      console.log('Inicia', res);
-      
-      this.contratos = res
-
-    })
+    this.contratoService.getContratosEmail(this.user.email).subscribe(
+      res => {
+        console.log('Inicia', res);
+        this.contratos = res;
+        this.isLoading = false;
+      },
+      error => {
+        console.error('Error al obtener contratos:', error);
+        this.isLoading = false;
+      }
+    )
   }
 
    // Implementar la función deleteContrato
@@ -83,6 +91,21 @@ export class ContratosComponent implements OnInit {
 
   viewContrato(contrato:number){
     this.router.navigate(['/dashboard/valida', {contrato: contrato}]);
+  }
+
+  // trackBy para evitar re-renderizar toda la lista en cada cambio.
+  trackByContrato(index: number, contrato: any): number {
+    return contrato?.contrato ?? index;
+  }
+
+  // Limpiar el buscador para realizar una nueva búsqueda
+  limpiar(){
+    this.inputContrato.nativeElement.value = '';
+    this.contrato = {} as Contrato;
+    this.showNotFoundMessage = false;
+    this.showDuplicateMessage = false;
+    this.errorMessage = '';
+    this.inputContrato.nativeElement.focus();
   }
 
    findContrato(){

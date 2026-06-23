@@ -4,8 +4,6 @@ import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms
 import { UpdateNombreService } from '../../services/update-nombre.service';
 import { SpinnerService } from '../../services/spinner.service';
 
-declare var $: any;
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,6 +18,8 @@ export class ProfileComponent implements OnInit {
   }
 
   userForm: UntypedFormGroup;
+
+  editing = false;
 
   isLoadingName$ = this.spinnerService.isLoadingName$;
   //isLoadingRecibo$ = this.spinnerService.isLoadingRecibo$;
@@ -44,27 +44,13 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.getUser();
+  }
 
-    $('#inputNombre').hide();
-    $('#btnSave').hide();
-    $('#btnCancel').hide();
-
-
-    $('#inputNombre').keyup(() => {
-
-      let inputNombre = $('#inputNombre').val();
-
-
-      if (inputNombre != this.user.nombre) {
-        $('#btnSave').attr('disabled', false);
-      } else {
-        $('#btnSave').attr('disabled', true);
-      }
-
-    });
-
+  // El botón Guardar se habilita solo cuando el nombre cambió y no está vacío.
+  get isSaveDisabled(): boolean {
+    const nombre = (this.userForm.value.nombre || '').trim();
+    return !nombre || nombre === this.updateNombreService.nombreUsuario;
   }
 
   getUser() {
@@ -79,46 +65,24 @@ export class ProfileComponent implements OnInit {
   }
 
   editUser() {
-
-    $('#inputNombre').val(this.updateNombreService.nombreUsuario)
-    $('#inputNombre').show();
-
-    $('#btnEdit').hide();
-    $('#nombreRes').hide();
-
-    $('#btnSave').show();
-    $('#btnCancel').show();
-    $('#btnSave').attr('disabled', true);
-
-
+    // Precargamos el input con el nombre actual y entramos en modo edición.
+    this.userForm.patchValue({ nombre: this.updateNombreService.nombreUsuario });
+    this.editing = true;
   }
 
   updateUser() {
 
     this.userService.updateUser(this.userForm.value).subscribe(res => {
-      console.log(res);
       if (res.msg) {
         this.updateNombreService.nombreUsuario = this.userForm.value.nombre;
-
-        $('#nombreRes').show();
-        $('#btnEdit').show();
-
-        $('#inputNombre').hide();
-        $('#btnSave').hide();
-        $('#btnCancel').hide();
+        this.editing = false;
       }
     })
-
 
   }
 
   cancel() {
-    $('#btnSave').hide();
-    $('#btnCancel').hide();
-    $('#inputNombre').hide();
-
-    $('#btnEdit').show();
-    $('#nombreRes').show();
+    this.editing = false;
   }
 
 }

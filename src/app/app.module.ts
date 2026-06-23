@@ -33,6 +33,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CardPagoComponent } from './components/card-pago/card-pago.component';
 import { ContratosComponent } from './components/contratos/contratos.component';
 import { ContratoComponent } from './components/contrato/contrato.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const routes: Route[] = [
@@ -87,7 +88,8 @@ const routes: Route[] = [
     ProfileComponent,
     CardPagoComponent,
     ContratosComponent,
-    ContratoComponent
+    ContratoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

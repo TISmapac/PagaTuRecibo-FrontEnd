@@ -5,11 +5,6 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { SpinnerService } from '../../services/spinner.service';
 import { LoadingService } from '../../services/loading.service';
 
-declare var $: any;
-
-
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +13,9 @@ declare var $: any;
 export class LoginComponent implements OnInit {
 
   isLoading$ = this.spinnerService.isLoading$;
+
+  isSubmitting = false;
+  errorMessage = '';
 
   user = {
     email: '',
@@ -37,63 +35,50 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.min(1)] ],
+      email: ['', [Validators.required, Validators.email] ],
       password: ['', [Validators.required, Validators.minLength(6)]] //TODO true | false
     })
-
-   
 
   }
 
   onLoginUser() {
 
-    let error='';
+    this.errorMessage = '';
 
-    if(this.form.valid){
-
-      $('#btn-entrar').attr('disabled',true);
-
-      //Eliminamos espacios en blanco que puedan darse en el email
-      this.form.value.email = this.form.value.email.trim();
-
-      this.authService.login(this.form.value).subscribe(res => {
-
-        if(res.token){
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('email', this.form.value.email);
-    
-          this.router.navigate(['/dashboard/valida', {email: this.form.value.email}]);
-        }{
-          if(res['msg']){
-            error =  res['msg'];
-            $('#errorMessage').text(error)
-          }
-        }
-
-        $('#btn-entrar').attr('disabled',false);
-        
-      }, err => {
-  
-        if(err.error){
-  
-          error = err.error.msg;
-  
-          if(err.error.errors){
-            error =  err.error.errors[0]['msg'];
-
-            $('#btn-entrar').attr('disabled',false);
-          }
-  
-          $('#errorMessage').text(error)
-          $('#btn-entrar').attr('disabled',false);
-        }
-        
-      })
-    }else{
-      $('#errorMessage').text("Formulario invalido")
-      $('#btn-entrar').attr('disabled',false);
+    if(!this.form.valid){
+      this.errorMessage = 'Formulario inválido';
+      return;
     }
 
+    this.isSubmitting = true;
+
+    //Eliminamos espacios en blanco que puedan darse en el email
+    this.form.value.email = this.form.value.email.trim();
+
+    this.authService.login(this.form.value).subscribe(res => {
+
+      if(res.token){
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('email', this.form.value.email);
+
+        this.router.navigate(['/dashboard/valida', {email: this.form.value.email}]);
+      } else if(res['msg']){
+        this.errorMessage = res['msg'];
+      }
+
+      this.isSubmitting = false;
+
+    }, err => {
+
+      if(err.error){
+        this.errorMessage = err.error.errors
+          ? err.error.errors[0]['msg']
+          : err.error.msg;
+      }
+
+      this.isSubmitting = false;
+
+    })
 
   }
 

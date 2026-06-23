@@ -1,0 +1,82 @@
+<footer class="site-footer">
+  <div class="container py-5">
+    <div class="row g-4">
+
+      <!-- Marca -->
+      <div class="col-12 col-lg-3">
+        <div class="footer-logo-box mb-3">
+          <img src="assets/brand/smapac.webp" alt="SMAPAC" />
+        </div>
+        <p class="footer-desc">
+          Sistema Municipal de Agua Potable y Alcantarillado de Carmen. Organismo
+          descentralizado del H. Ayuntamiento de Carmen, Campeche.
+        </p>
+        <a href="https://www.facebook.com/profile.php?id=100063503659430" target="_blank"
+          rel="noreferrer" class="footer-social">
+          <i class="fab fa-facebook"></i> SMAPAC Carmen
+        </a>
+      </div>
+
+      <!-- Sitio oficial -->
+      <div class="col-6 col-lg-3">
+        <h4 class="footer-title">Sitio oficial</h4>
+        <ul class="footer-list">
+          <li><a [href]="sitioOficial + '/'" target="_blank" rel="noreferrer">Inicio</a></li>
+          <li><a [href]="sitioOficial + '/modulos'" target="_blank" rel="noreferrer">Módulos</a></li>
+          <li><a [href]="sitioOficial + '/tramites'" target="_blank" rel="noreferrer">Trámites</a></li>
+          <li><a [href]="sitioOficial + '/servicios'" target="_blank" rel="noreferrer">Servicios</a></li>
+          <li><a [href]="sitioOficial + '/transparencia'" target="_blank" rel="noreferrer">Transparencia</a></li>
+          <li><a [href]="sitioOficial + '/aviso-de-privacidad'" target="_blank" rel="noreferrer">Aviso de privacidad</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div class="col-6 col-lg-3">
+        <h4 class="footer-title">Contacto</h4>
+        <ul class="footer-contact">
+          <li>
+            <i class="fas fa-phone"></i>
+            <span>(938) 382-3001<br />(938) 382-3063</span>
+          </li>
+          <li>
+            <i class="fas fa-clock"></i>
+            <span>Lunes a viernes<br />8:00 a 15:00 hrs</span>
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Ciudad del Carmen, Campeche</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Servicios en línea -->
+      <div class="col-12 col-lg-3">
+        <h4 class="footer-title">Servicios en línea</h4>
+        <ul class="footer-list">
+          <li><a [routerLink]="['/dashboard/valida']">Pago en línea</a></li>
+          <li><a [href]="sitioOficial + '/tramites'" target="_blank" rel="noreferrer">Trámites y requisitos</a></li>
+          <li><a [href]="sitioOficial + '/transparencia'" target="_blank" rel="noreferrer">Portal de transparencia</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Barra inferior -->
+  <div class="footer-bottom">
+    <div class="container py-3 d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
+      <span class="footer-copy">&copy; SMAPAC 2024-2027</span>
+
+      <a [href]="sitioOficial + '/'" target="_blank" rel="noreferrer" class="footer-back"
+        title="Volver al sitio web oficial">
+        <i class="fas fa-arrow-left"></i> Volver al sitio web oficial
+      </a>
+
+      <a href="http://www.carmen.gob.mx/" target="_blank" rel="noreferrer" class="footer-carmen"
+        title="Ayuntamiento de Carmen">
+        <img src="assets/brand/carmen-blanco.webp" alt="Ayuntamiento de Carmen" />
+        <span>Nos mueve el amor por Carmen</span>
+      </a>
+    </div>
+  </div>
+</footer>

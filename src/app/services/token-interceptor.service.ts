@@ -37,9 +37,12 @@ export class TokenInterceptorService implements HttpInterceptor{
       tokenReset = '1234'
     }
 
+    // El backend autentica leyendo únicamente el header 'x-token' (token crudo,
+    // sin prefijo 'Bearer'). El header 'reset' lo consume el flujo de new-password
+    // (req.headers.reset). El antiguo header 'Authorization' no lo lee nadie en el
+    // backend, así que se elimina para no exponer el token de forma innecesaria.
     const tokenizeReq = req.clone({
       setHeaders: {
-        Authorization: `${this.authSvc.getToken()}`,
         'x-token': `${this.authSvc.getToken()}`,
         'reset': `${tokenReset}`
       }
@@ -52,7 +55,7 @@ export class TokenInterceptorService implements HttpInterceptor{
           this.router.navigateByUrl('/');
         }
 
-        return throwError(err);
+        return throwError(() => err);
       })
       
     )

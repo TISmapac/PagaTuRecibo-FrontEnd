@@ -14,6 +14,8 @@ export class CardPagoComponent implements OnInit {
   signature   :   String = '';
   monto       :   number = 0;
 
+   
+
   //Params
   emailP      :   String = '';
   contratoP   :   number = 0;
@@ -25,7 +27,11 @@ export class CardPagoComponent implements OnInit {
   giroP       :   String = '';
   estatusP    :   String = '';
   fechaVencP  :   String = '';
-
+//datos de suspension (agregado para mostrar en pago-movil)
+  adeudaPadron: number = 0;
+  reconexion: number = 0;
+  adeudaReconexTotal: number = 0;
+  flagReconexion: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,25 +59,35 @@ export class CardPagoComponent implements OnInit {
                           '-'+this.fechaVencP.substring(0,4);
 
       this.referencia = this.generateReferencia(this.contratoP);
-      this.monto = params.adeuda.replace('$','');
+      this.getContrato(this.contratoP);
 
     });
     
     //this.getContrato(this.contratoP);
   }
 
-  /*getContrato(contrato: number){
+  getContrato(contrato: number){
 
     console.log("entra");
 
-    this.contratoService.getContrato(contrato).subscribe( res => {
+    this.contratoService.getContrato(contrato).subscribe(res => {
 
+    this.contrato = res;
+
+    // Contrato activo
+    if (res.adeuda) {
       this.monto = res.adeuda;
-      //this.contrato = res;
-      //this.referencia = this.generateReferencia(contrato);
+      this.adeudaP = '$' + Number(res.adeuda).toFixed(2);
+    }
 
-    });
-  }*/
+    // Contrato suspendido
+    this.adeudaPadron = res.adeuda_padron || 0;
+    this.reconexion = res.reconexion || 0;
+    this.adeudaReconexTotal = res.adeuda_reconex_total || 0;
+    this.flagReconexion = res.flag_reconexion || 0;
+
+  });
+  }
 
   generateReferencia(contrato : number){
 

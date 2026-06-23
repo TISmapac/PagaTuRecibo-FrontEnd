@@ -30,6 +30,9 @@ chrome-profiler-events*.json
 !.vscode/extensions.json
 .history/*
 
+# Claude Code (configuración local, contiene rutas absolutas)
+.claude/
+
 # misc
 /.angular/cache
 /.sass-cache

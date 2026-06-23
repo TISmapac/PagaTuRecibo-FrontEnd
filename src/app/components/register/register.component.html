@@ -23,7 +23,7 @@
           </div>
           <input
             class="form-control form-control-lg"
-            type="mail"
+            type="email"
             [(ngModel)]="user.email"
             name="email"
             id="email"
@@ -46,6 +46,8 @@
           <input
             type="password"
             class="form-control form-control-lg"
+            [(ngModel)]="passwordConfirm"
+            name="passAux"
             id="passAux"
           />
         </div>
@@ -53,6 +55,7 @@
         <button
           id="btnRegister"
           type="submit"
+          [disabled]="isSubmitting"
           class="btn btn-primary form-control mb-2"
           style="font-weight: 600"
         >
@@ -66,7 +69,7 @@
           Registrarse
         </button>
         <br>
-        <div class="error" id="errorMessage" style="color: crimson"></div>
+        <div class="error" id="errorMessage" style="color: crimson" *ngIf="errorMessage">{{ errorMessage }}</div>
         
         <div class="register mt-2">
           <div class="form-group titleInput">

@@ -1,71 +1,225 @@
 /* contratos.component.css */
 
-/* Contenedor principal usando grid para mejor control */
-.contratos-grid {
-  display: grid;
-  gap: 30px;
+/* Tarjeta principal del módulo */
+.contratos-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 960px;
 }
 
-/* Animación de shimmer para el skeleton */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+.contratos-title {
+  color: var(--brand-blue);
+  font-weight: 700;
+  margin: 0;
 }
 
-/* Estilos base del skeleton */
-.skeleton-loader {
-  background: linear-gradient(to right, #e9ecef 8%, #dee2e6 18%, #e9ecef 33%);
-  background-size: 2000px 100%;
-  animation: shimmer 2s infinite ease-in-out;
-  border-radius: 8px;
-  min-height: 1em;
-}
-
-/* Skeleton para la tabla de contratos vinculados */
-.skeleton-table-row {
-  display: grid;
-  grid-template-columns: 100px 1fr 1.5fr 100px 80px 100px; /* Ajusta según tus columnas */
-  gap: 10px;
-  padding: 12px 8px;
-  border-bottom: 1px solid #e9ecef;
+/* ---------- Buscador ---------- */
+.buscador {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   align-items: center;
 }
 
-.skeleton-table-row .skeleton-loader {
-  height: 24px; /* Altura similar a una celda de texto */
+.buscador .form-control {
+  flex: 1 1 280px;
+  min-width: 0;
+  border-radius: 10px;
 }
 
-/* Clase para ocultar elementos visualmente pero mantenerlos accesibles */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
+.buscador-acciones {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.buscador-acciones .btn {
+  border-radius: 10px;
+}
+
+/* ---------- Tablas ---------- */
+.tabla-contratos {
+  background-color: transparent;
+  border-radius: 16px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 0;
 }
 
-/* Ajustes para los mensajes */
-.messages-container {
-  margin-left: 0; /* Lo ajustamos al nuevo layout */
+.tabla-contratos thead th {
+  background-color: var(--brand-blue);
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+  padding: 0.75rem 0.5rem;
+}
+
+.tabla-contratos tbody td {
+  vertical-align: middle;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tabla-contratos tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.tabla-contratos tbody tr:hover {
+  background-color: rgba(1, 31, 75, 0.04);
+}
+
+/* Estatus */
+.status {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-activo {
+  color: #1ea672;
+}
+
+.status-suspendido {
+  color: #cd3d64;
+}
+
+/* ---------- Sección contratos vinculados ---------- */
+.vinculados {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.vinculados-header {
+  background-color: var(--brand-blue);
+  color: #fff;
+  padding: 12px;
+  font-weight: 600;
+}
+
+.vinculados .tabla-contratos {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ---------- Skeleton ---------- */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton-loader {
+  display: block;
+  width: 100%;
+  height: 18px;
+  background: linear-gradient(to right, #e9ecef 8%, #dee2e6 18%, #e9ecef 33%);
+  background-size: 2000px 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+  border-radius: 6px;
+}
+
+.skeleton-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.skeleton-row:hover {
+  background-color: transparent !important;
+}
+
+/* ---------- Estado vacío ---------- */
+.estado-vacio {
+  padding: 40px 20px;
+  color: #94a3b8;
+}
+
+.estado-vacio i {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.estado-vacio p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ---------- Mensajes ---------- */
+.messages-container .alert {
   width: 100%;
 }
 
-/* Hacer que las tablas sean responsivas */
+/* ---------- Responsivo: tabla -> tarjetas en móvil ---------- */
 @media (max-width: 768px) {
-  .main-card {
-    padding: 20px 15px;
+  .contratos-card {
+    padding: 20px 16px;
   }
 
-  .skeleton-table-row {
-    grid-template-columns: 80px 1fr 1fr 80px 50px 50px;
-    gap: 5px;
-    font-size: 0.8rem;
+  .buscador-acciones {
+    width: 100%;
+  }
+
+  .buscador-acciones .btn {
+    flex: 1;
+  }
+
+  /* Convertimos cada fila en una tarjeta apilada */
+  .tabla-contratos thead {
+    display: none;
+  }
+
+  .tabla-contratos,
+  .tabla-contratos tbody,
+  .tabla-contratos tr,
+  .tabla-contratos td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-contratos tbody tr {
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 6px 12px;
+    background: #fff;
+  }
+
+  .tabla-contratos tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    text-align: right;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 8px 0;
+  }
+
+  .tabla-contratos tbody td:last-child {
+    border-bottom: none;
+  }
+
+  /* Etiqueta de cada celda usando el atributo data-label */
+  .tabla-contratos tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    color: var(--brand-blue);
+    text-align: left;
+  }
+
+  /* En modo tarjeta el skeleton ocupa el ancho disponible */
+  .skeleton-loader {
+    max-width: 60%;
+  }
+
+  .skeleton-circle {
+    margin: 0;
   }
 }

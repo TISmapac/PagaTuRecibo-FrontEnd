@@ -1,41 +1,35 @@
-<div class="container-fluid" style="margin-top: 20px; z-index: 1; position: sticky">
+<div class="container-fluid valida-wrapper">
 
 
-    <div class="contenedor pt-4 pb-3">
-        <h2 style="text-align: center; font-weight: bolder; color: rgb(248, 248, 248);">&nbsp;Ingresa tu número de contrato&nbsp;</h2>
-        <br>
-        <!-- <div class="hijo mb-2">
-            <span class="red" style="font-size: 0.8em; font-weight: 600;">*</span>
-            <span style="font-size: 0.8em;">&nbsp;Favor de llenar el campo para la consulta</span>
-        </div> -->
+    <div class="main-card valida-card contenedor pt-4 pb-3">
 
-        <div class="contenedorRow hijo">
-
-            <input class="form-control pr-5 mr-3 text-center" placeholder="Número de contrato" id="contratoId" type="number" min="0"/>
-    
-
-            <div>&nbsp;</div>
-            <div class="btnValidar">
-                
-                <button type="button" id="btnContrato" (click)="getContrato()" disabled="true" class="btn btn-primary"
-                style="font-weight: 600">
-
-                    <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-
-                    <span class="btnIcon">
-                        <i *ngIf="isLoadingReverse$ | async" class="fas fa-search"></i>
-                    </span>
-    
-                    <span class="btnLabel">
-                        <i *ngIf="isLoadingReverse$ | async" class="fas fa-search"></i>&nbsp;&nbsp;Buscar
-                    </span>
-
-                </button>
-            </div>
-
+        <div class="volver-contratos" *ngIf="contratoParam">
+            <a [routerLink]="['/dashboard/contratos']" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-arrow-left"></i>&nbsp;Volver a mis contratos
+            </a>
         </div>
 
-        <div style="display: flex; justify-content: center; align-items: center; background-color: white;" class="hijo card-shadow mt-4" *ngIf="contrato?.contrato">
+        <!-- Búsqueda manual: solo cuando NO se llega desde "Mis contratos" -->
+        <ng-container *ngIf="!contratoParam">
+            <h2 class="valida-title">&nbsp;Ingresa tu número de contrato&nbsp;</h2>
+
+            <div class="valida-buscador">
+                <input class="form-control text-center" placeholder="Número de contrato" id="contratoId" type="number" min="0"
+                    [(ngModel)]="contratoId" name="contratoId" (keyup.enter)="contratoId && getContrato()"/>
+
+                <div class="valida-acciones">
+                    <button type="button" id="btnContrato" (click)="getContrato()" [disabled]="!contratoId" class="btn btn-primary">
+                        <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <i class="fas fa-search"></i>&nbsp;Buscar
+                    </button>
+                    <button type="button" (click)="limpiar()" class="btn btn-outline-primary">
+                        <i class="fas fa-eraser"></i>&nbsp;Limpiar
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="hijo mt-4 resultado-card" *ngIf="contrato?.contrato">
         
             <div class="row">
                 
@@ -46,12 +40,12 @@
                         <tr>
                             <td class="right titleInput">Estatus:</td>
                             <td>
-                                <span *ngIf="contrato.estatus == 'Activo'; else estatusSuspendido" class="status" style="color: #1ea672;">
+                                <span *ngIf="contrato.estatus == 'Activo'; else estatusSuspendido" class="status status-activo">
                                 <i class="fas fa-check-circle"></i>&nbsp;{{contrato?.estatus}}
                                 </span>
-    
+
                                 <ng-template #estatusSuspendido>
-                                    <span class="status" style="color: #cd3d64;">
+                                    <span class="status status-suspendido">
                                         <i class="fas fa-times-circle"></i>&nbsp;{{contrato?.estatus}}
                                     </span>
                                 </ng-template>
@@ -188,7 +182,7 @@
                             <input type="hidden" name="y" value="25" />
                             <input type="hidden" name="signature" value="{{ signature }}" />
     
-                            <button id="btnGenPago" style="font-weight: 600" class="btn btn-success" (click)="form.submit()">
+                            <button id="btnGenPago" style="font-weight: 600" class="btn btn-guinda" (click)="form.submit()">
                                 <span>Generar Pago</span>
                             </button>
                         </form>
@@ -216,7 +210,7 @@
                                     <input type="hidden" name="y" value="25" />
                                     <input type="hidden" name="signature" value="{{ signature }}"/>
                     
-                                    <button id="btnGenPago" style="font-weight: 600" class="btn btn-success" (click)="form.submit()">
+                                    <button id="btnGenPago" style="font-weight: 600" class="btn btn-guinda" (click)="form.submit()">
                                         <span class="btnLabel">&nbsp;Pagar Total</span>
                                     </button>
                     
@@ -242,197 +236,9 @@
                      
                     <br><br>
     
-                    <!---
-                    <div>
-                        
-                        <div class="form-group">
-                        
-                            <div>
-                                <span class="titleInput">Estatus:</span>
-    
-                                <span
-                                *ngIf="contrato.estatus == 'Activo'; else elseBlock" class="status">
-                                    <i class="fas fa-check-circle"></i>&nbsp;{{contrato?.estatus}}</span>
-                                <ng-template #elseBlock>
-                                <span
-                                    class="status"
-                                    style="margin-left: 20px; font-weight: bold; color: #cd3d64"
-                                >
-                                    <i class="fas fa-times-circle"></i>&nbsp;{{ contrato?.estatus }}
-                                </span>
-                                </ng-template>
-                            </div>
-    
-                        </div>
-    
-                        <div *ngIf="contrato.estatus == 'Suspendido'" class="form-group">
-                            <span class="titleInput">Fecha suspensión:</span>
-                            <span class="res">{{ fechaSuspension }}</span>
-                        </div>
-    
-                        <div class="form-group">
-                            <span class="titleInput">Contrato:</span>
-                            <span class="res">{{ contrato?.contrato }}</span>
-                        </div>
-    
-                        <div class="form-group">
-                            <span class="titleInput">Titular:</span>
-                            <span class="res">{{ contrato?.nombre }}</span>
-                        </div>
-    
-                        <div class="form-group">
-                            <span class="titleInput">Domicilio:</span>
-                            <span class="res"
-                                >{{ contrato?.direccion }} {{ contrato.colonia }}</span>
-                        </div>
-    
-                        <div class="form-group">
-                            <span class="titleInput">Tarifa:</span>
-                            <span class="res">{{ contrato?.tarifa }}</span>
-                        </div>
-    
-                        <div class="form-group">
-                            <span class="titleInput">Giro:</span>
-                            <span class="res">{{ contrato?.giro }}</span>
-                        </div>
-    
-                        <div class="form-group">
-                            <span class="titleInput">Mes facturado:</span>
-                            <span class="res">{{ contrato?.mes_facturado }}</span>
-                        </div>
-    
-                        <div class="form-group">
-                            <span class="titleInput">Fecha de vencimiento:</span>
-                            <span class="res">{{ contrato?.fecha_vencimiento }}</span>
-                        </div>
-    
-                        <div *ngIf="contrato.flag_reconexion == 1" class="form-group">
-                            <table style="width: 40%">
-                                <tr>
-                                <td class="titleInput">Adeudo:</td>
-                                <td class="adeudo" style="text-align: right">
-                                    ${{ contrato?.adeuda_padron | number: "1.2-5" }}
-                                </td>
-                                </tr>
-                                <tr>
-                                <td class="titleInput">Reconexión:</td>
-                                <td class="adeudo" style="text-align: right">
-                                    ${{ contrato?.reconexion | number: "1.2-5" }}
-                                </td>
-                                </tr>
-                                <tr>
-                                <td class="titleInput">Total a pagar:</td>
-                                <td
-                                    class="adeudo"
-                                    style="text-align: right; border-top: 3px solid rgb(32, 32, 32)">
-                                    ${{ contrato?.adeuda_reconex_total | number: "1.2-5" }}
-                                </td>
-                                </tr>
-                            </table>
-                        </div>
-    
-                        <div *ngIf="contrato.estatus == 'Activo'" class="form-group">
-                            
-                            <div class="form-group">
-                                <span class="titleInput">Adeudo Total:</span>
-                                <span class="adeudo"> ${{ contrato?.adeuda | number: "1.2-5" }}</span>
-                            </div>
-    
-                            <span class="titleInput">Recibo Dígital: </span>
-    
-                            <span class="adeudo">
-                                <a role="button" (click)="imprimeRecibo()"> Descargar
-                                    <i class="fas fa-file-invoice"></i>
-                                </a>
-                            </span>
-                            <br/><br/>
-                        </div>      
-                    </div>
-                    -->
             
                 </div>
     
-                <!---
-                <div style="display: flex; justify-content: center; align-items: center">
-                    
-                    <div *ngIf="contrato.estatus == 'Activo'; else elseBlock2">
-                        <div *ngIf="contrato.adeuda <= 0; else conAdeudo">
-                            
-                            &nbsp;
-    
-                        </div>
-                        
-                        <ng-template #conAdeudo>
-                            <div class="hijo">
-                                <form #form action="https://www.adquiramexico.com.mx:443/mExpress/pago/avanzado" method="post">
-                                    <input type="hidden" name="importe" value="{{ monto }}" />
-                                    <input type="hidden" name="referencia" value="{{ referencia }}"/>
-                                    <input type="hidden" name="urlretorno" value="https://restserver-smapac.herokuapp.com/api/orders/respuesta.html"/>
-                                    <input type="hidden" name="idexpress" value="{{ idexpress }}" />
-                                    <input type="hidden" name="financiamiento" value="0" />
-                                    <input type="hidden" name="plazos" value="" />
-                                    <input type="hidden" name="mediospago" value="110000" />
-                                    <input type="hidden" name="x" value="45" />
-                                    <input type="hidden" name="y" value="25" />
-                                    <input type="hidden" name="signature" value="{{ signature }}" />
-    
-                                    <button id="btnGenPago" style="font-weight: 600" class="btn btn-success" (click)="form.submit()">
-                                        <span class="btnLabel">&nbsp;Generar Pago</span>
-                                    </button>
-                                </form>
-                            </div>
-                        </ng-template>
-                    </div>
-    
-                    <ng-template #elseBlock2>
-                        <div class="m-3">
-                        <div *ngIf="contrato.flag_reconexion == 1 && contrato.multas == 10 && contrato.fecha_suspension != null && puedePagar == true; else elseBlock3">
-                            
-                            <div class="hijo">
-                            
-                                <form #form action="https://www.adquiramexico.com.mx:443/mExpress/pago/avanzado" method="post">
-                                    <input type="hidden" name="importe" value="{{ monto_reconex }}"/>                    
-                                    <input type="hidden" name="referencia" value="{{ referencia }}"/>                  
-                                    <input type="hidden" name="urlretorno" value="https://restserver-smapac.herokuapp.com/api/orders/respuesta.html"/>
-                                    <input type="hidden" name="idexpress" value="{{ idexpress }}"/>
-                                    <input type="hidden" name="financiamiento" value="0" />
-                                    <input type="hidden" name="plazos" value="" />
-                                    <input type="hidden" name="mediospago" value="110000" />
-                                    <input type="hidden" name="x" value="45" />
-                                    <input type="hidden" name="y" value="25" />
-                                    <input type="hidden" name="signature" value="{{ signature }}"/>
-    
-                                    <button
-                                    id="btnGenPago"
-                                    style="font-weight: 600"
-                                    class="btn btn-success"
-                                    (click)="form.submit()">
-    
-                                        <span class="btnLabel">&nbsp;Pagar Total</span>
-    
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-    
-                        <ng-template #elseBlock3>
-                            <div>
-                            No es posible realizar el pago ni descargar el recibo de este
-                            contrato por este medio, debe presentarse en las instalaciones
-                            del
-                            <span style="color: #3c4257; font-weight: bolder">SMAPAC</span>
-                            para el pago de
-                            <span class="error" style="font-weight: bolder"
-                                >Reconexión</span
-                            >
-                            correspondiente y otras aclaraciones.
-                            </div>
-                        </ng-template>
-                        </div>
-                    </ng-template>
-            
-                </div>
-            -->
         
             </div>
         

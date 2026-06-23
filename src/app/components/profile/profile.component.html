@@ -1,77 +1,46 @@
-<div class="container-fluid" style="margin-top: 10px; z-index: 1; position: relative;">
+<div class="main-card profile-card">
 
-    <div class="mt-5 card">
+  <div class="profile-header">
+    <h2 class="profile-title">Perfil</h2>
 
-        <div>
-            <table style="width: 80%; margin-left: 80px;">
-                <tr>
-                    <td>
-                        <h2>
-                            Perfil
-                        </h2>
-                    </td>
-                    <td>
-                        <button id="btnCancel" style="float: right; font-weight: 600;" (click)="cancel()"
-                            class="btn btn-outline-dark">
-                            Cancelar
-                        </button>
-                    </td>
-                    <td style="width: 130px;">
+    <div class="profile-actions">
+      <button id="btnCancel" *ngIf="editing" (click)="cancel()" class="btn btn-outline-dark">
+        Cancelar
+      </button>
 
-                        <button id="btnSave" style="float: right; font-weight: 600;" (click)="updateUser()"
-                            class="btn btn-success">
-                            Guardar
-                            <i class="far fa-save"></i>
-                        </button>
+      <button id="btnSave" *ngIf="editing" [disabled]="isSaveDisabled" (click)="updateUser()" class="btn btn-success">
+        Guardar <i class="far fa-save"></i>
+      </button>
 
-                        <button id="btnEdit" style="float: right; font-weight: 600;" (click)="editUser()"
-                            class="btn btn-outline-primary">
-                            Editar
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <hr>
-
-
-        <form action="">
-
-            <table style="width: 80%; margin-left: 80px;">
-                <tr style="height: 100px;">
-                    <td style="width: 200px">Correo:</td>
-                    <td style="font-size: 22px; ">
-                        <div id="emailDiv">
-
-                            <span id="emailRes">{{user?.email}}</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 100px;">
-                    <td>Nombre:</td>
-                    <td style="font-size: 22px; font-weight: 600">
-                        <form [formGroup]="userForm">
-                            <div id="nombreDiv" style="width: 80%;">
-                                <span id="nombreRes">{{updateNombreService.nombreUsuario}}</span>
-                                <input formControlName="id" id="uidInput" type="hidden">
-                                <input formControlName="email" type="hidden">
-                                <input formControlName="nombre" id="inputNombre" type="text" class="form-control">
-                            </div>
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </form>
-
+      <button id="btnEdit" *ngIf="!editing" (click)="editUser()" class="btn btn-outline-primary">
+        Editar <i class="far fa-edit"></i>
+      </button>
     </div>
+  </div>
+
+  <hr>
+
+  <form [formGroup]="userForm">
+    <input formControlName="id" type="hidden">
+    <input formControlName="email" type="hidden">
+
+    <div class="profile-field">
+      <span class="profile-label">Correo:</span>
+      <span class="profile-value">{{ user?.email }}</span>
+    </div>
+
+    <div class="profile-field">
+      <span class="profile-label">Nombre:</span>
+      <span class="profile-value" *ngIf="!editing">{{ updateNombreService.nombreUsuario }}</span>
+      <input *ngIf="editing" formControlName="nombre" id="inputNombre" type="text" class="form-control profile-input">
+    </div>
+  </form>
 
 </div>
 
 <div *ngIf="isLoadingName$ | async" class="spinner"
     style="display: flex; justify-content: center; align-items: center;">
-    
+
     <div class="lds-hourglass"></div>
 
 </div>

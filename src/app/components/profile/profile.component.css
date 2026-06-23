@@ -3,6 +3,87 @@
     border-radius: 10px;
 }
 
+/* ---------- Perfil ---------- */
+.profile-card {
+    width: 100%;
+    max-width: 720px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.profile-title {
+    color: var(--brand-blue);
+    font-weight: 700;
+    margin: 0;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.profile-field {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.profile-field:last-child {
+    border-bottom: none;
+}
+
+.profile-label {
+    flex: 0 0 120px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.profile-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    word-break: break-word;
+}
+
+.profile-input {
+    max-width: 360px;
+}
+
+@media (max-width: 576px) {
+    .profile-header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .profile-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .profile-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .profile-label {
+        flex-basis: auto;
+        font-size: 0.85rem;
+    }
+
+    .profile-input {
+        max-width: 100%;
+    }
+}
+
 .titleInputBig{
     font-weight: 500;
     font-size: 24px;

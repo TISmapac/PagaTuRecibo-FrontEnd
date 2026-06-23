@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,13 +28,13 @@ export class RestService {
   }
 
   sendPayment(token: string, id: string): Promise<any>{
-    return this.http.patch(`${this.URL_API}${id}`,
+    return lastValueFrom(this.http.patch(`${this.URL_API}${id}`,
       {
         token
-      }).toPromise()
+      }))
   }
 
   confirmOrder(id:string): Promise<any>{
-    return this.http.patch(`${this.URL_API}confirm/${id}`, {}).toPromise()
+    return lastValueFrom(this.http.patch(`${this.URL_API}confirm/${id}`, {}))
   }
 }

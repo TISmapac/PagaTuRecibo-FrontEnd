@@ -1,119 +1,66 @@
-<nav
-  class="navbar navbar-expand-md navbar-light sticky-top"
-  style="background-color: #011f4b"
->
-  <!--<a class="navbar-brand" href="#">SMAPAC</a>-->
-  <!-- <a href="https://www.smapac.gob.mx" target="_blank" class="navbar-brand"> -->
-  <img
-    src="assets/img/smapac_logo.png"
-    style="height: 120px; margin-top: -10px; margin-left: 80px"
-  />
-  <!-- <img src="../../../pagaturecibo/assets/img/smapac-logo-300x190.png" style="height: 60px;"> -->
-  <!-- </a> -->
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto"></ul>
-    <ul class="navbar-nav">
-      <!--<li class="nav-item">
-                <a class="nav-link" (click)="logOut()" [routerLink]="['/']">
-                    <i class="fas fa-tint"></i> Reportes de Fugas</a>
-            </li>-->
+<nav class="navbar navbar-expand-md navbar-light sticky-top brand-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center gap-2" [routerLink]="['./valida']">
+      <img src="assets/brand/smapac.webp" class="navbar-logo" alt="SMAPAC" />
+      <span class="brand-divider d-none d-lg-block"></span>
+      <img src="assets/brand/carmen.webp" class="navbar-logo d-none d-lg-block" alt="Ayuntamiento de Carmen" />
+    </a>
 
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['./valida']"
-          style="color: aliceblue"
-        >
-          <i class="fas fa-coins"></i>
-          Paga en línea
-        </a>
-      </li>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['./contratos']"
-          style="color: aliceblue"
-        >
-          <i class="fa-solid fa-file-lines"></i>
-          Mis contratos
-        </a>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-md-center gap-md-1">
+        <li class="nav-item">
+          <a class="nav-link brand-nav-link" [routerLink]="['./contratos']">
+            <i class="fa-solid fa-file-lines"></i>
+            Mis contratos
+          </a>
+        </li>
 
-      <li class="nav-item dropdown" style="margin-right: 80px">
-        <a
-          class="nav-item nav-link dropdown-toggle mr-md-2"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="true"
-          href="#"
-          style="color: aliceblue"
-        >
-          <i class="fas fa-user"></i>
-          <span> {{ updateNombreService.nombreUsuario }}</span>
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" [routerLink]="['./myProfile']">Mi perfil</a>
-
-          <div class="dropdown-divider"></div>
-
-          <a class="dropdown-item" [routerLink]="['/']" (click)="logOut()"
-            >Cerrar sesión</a
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link brand-nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            href="#"
+            role="button"
           >
-        </div>
-      </li>
+            <i class="fas fa-user"></i>
+            <span> {{ updateNombreService.nombreUsuario }}</span>
+          </a>
 
-      <!--<li class="nav-item">
-                <a class="nav-link" [routerLink]="['./myProfile']">
-                    <i class="fas fa-user"></i> 
-                    Mi perfil
-                </a>
-            </li>-->
+          <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item" [routerLink]="['./myProfile']">Mi perfil</a>
 
-      <!--<li class="nav-item">
-                <a class="nav-link" (click)="logOut()" [routerLink]="['/']">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Cerrar sesión
-                </a>
-            </li>-->
+            <div class="dropdown-divider"></div>
 
-      <!-- <li class="nav-item" style="width: 10px;">
-            </li> -->
-    </ul>
+            <a class="dropdown-item" [routerLink]="['/']" (click)="logOut()">Cerrar sesión</a>
+          </div>
+        </li>
+
+        <li class="nav-item ms-md-2 mt-2 mt-md-0">
+          <a class="btn btn-guinda" [routerLink]="['./valida']">
+            <i class="fas fa-credit-card"></i>&nbsp;Busca tu contrato
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<div class="container mt-4 mb-4">
-  <!-- <div class="mt-5 ml-3">
-        <span class="titleInputBig">Bienvenido(a): </span>
-        <span class="titleName">
-
-            <span>{{updateNombreService.nombreUsuario}}</span>
-
-        </span>
-    </div> -->
+<div class="container mt-4 mb-4 dashboard-content">
   <router-outlet></router-outlet>
 </div>
 
-<footer class="footer">
-  <div>
-    <span
-      >Para dudas y aclaraciones, contáctanos en: soporte&#64;smapac.gob.mx</span
-    >
-    <span> O a los teléfonos: (938) 382-3001 y (938) 382-3063</span>
-    <br />
-    <span
-      >© 2024 - 2027 SMAPAC - Sistema Municipal de Agua Potable y Alcantarillado
-      de Carmen</span
-    >
-  </div>
-</footer>
+<app-footer></app-footer>

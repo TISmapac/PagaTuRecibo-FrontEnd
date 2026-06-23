@@ -3,8 +3,6 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
-declare var $: any;
-
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
@@ -13,6 +11,8 @@ declare var $: any;
 export class ResetComponent implements OnInit {
 
   form: UntypedFormGroup = new UntypedFormGroup({})
+
+  errorMessage = '';
 
   private token='';
 
@@ -39,33 +39,26 @@ export class ResetComponent implements OnInit {
 
   resetPassword(){
 
+    this.errorMessage = '';
 
-    if(this.form.valid){
-
-      console.log(this.form.value);
-
-      if(this.form.value.password == this.form.value.password2){
-        console.log("Estas dentro");
-
-        //llamamos al service y enviamos el token como header
-
-        this.authService.resetPassword(this.token, this.form.value.password).subscribe( res =>{
-          
-          if(res.message=="La contraseña ha sido cambiada"){
-
-            this.router.navigate(['/password-success-changed'])
-            
-          }
-          
-        })
-
-      }else{
-
-        $("#errorMessage").text('Las contraseñas no coinciden');
-      }
-    }else{
-      $("#errorMessage").text('Formulario invalido');
+    if(!this.form.valid){
+      this.errorMessage = 'Formulario inválido';
+      return;
     }
+
+    if(this.form.value.password !== this.form.value.password2){
+      this.errorMessage = 'Las contraseñas no coinciden';
+      return;
+    }
+
+    //llamamos al service y enviamos el token como header
+    this.authService.resetPassword(this.token, this.form.value.password).subscribe( res =>{
+
+      if(res.message=="La contraseña ha sido cambiada"){
+        this.router.navigate(['/password-success-changed'])
+      }
+
+    })
   }
 
 }

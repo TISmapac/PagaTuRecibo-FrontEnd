@@ -9,10 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- Bootstrap 5 (CSS y JS) y Popper se cargan localmente vía angular.json.
+       Se eliminaron los CDN de Bootstrap 4, jQuery y Popper 1 que entraban en
+       conflicto con Bootstrap 5 y pintaban los botones con el azul viejo (#007bff). -->
 
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>

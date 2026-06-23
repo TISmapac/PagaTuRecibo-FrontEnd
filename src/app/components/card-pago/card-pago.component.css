@@ -1,38 +1,42 @@
 .card-shadow{
-    box-shadow: 0 15px 35px 0 rgb(60 66 87 / 8%), 0 5px 15px 0 rgb(0 0 0 / 12%);
     border-radius: 10px;
+    background-color: rgb(255, 255, 255);
 }
 
+/* Botón de pago: guinda institucional, igual que los demás CTAs de pago */
 .btn-flutter{
-    background-color: #2B98F0;
-    border-radius: 5px;
+    background-color: var(--brand-guinda);
+    border: none;
+    border-radius: var(--brand-radius);
     height: 40px;
     width: 100%;
+    color: #fff;
 }
 
-.btn_flutter:visited{
-    background-color: blueviolet;
+.btn-flutter:hover,
+.btn-flutter:focus{
+    background-color: var(--brand-guinda-dark);
 }
 
 .titulo{
-    color: rgb(124, 124, 124);
+    color: rgb(0, 0, 0);
     font-size: 28px;
     font-weight: 700;
 }
 
 .subtitulo{
-    color: rgb(124, 124, 124);
+    color: rgb(0, 0, 0);
     font-size: 14px;
 }
 
 .res{
-    color: rgb(94, 94, 94);
+    color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 600;
 }
 
 .nombre{
-    color: #2B98F0;
+    color: var(--brand-blue);
     font-size: 22px;
     line-height: 20px;
     font-weight: 500;
@@ -40,7 +44,7 @@
 }
 
 .adeudo{
-    color: #2B98F0;
+    color: var(--brand-blue);
     font-size: 24px;
     font-weight: 700;
 }
