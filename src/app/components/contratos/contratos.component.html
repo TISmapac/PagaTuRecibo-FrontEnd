@@ -7,8 +7,12 @@
     <input
       #inputContrato
       type="text"
+      inputmode="numeric"
+      maxlength="6"
+      pattern="\d{6}"
       class="form-control text-center"
-      placeholder="Ingrese el número de contrato para agregarlo"
+      placeholder="Ingrese los 6 dígitos del contrato"
+      (input)="onContratoInput($event)"
       (keyup.enter)="findContrato()" />
     <div class="buscador-acciones">
       <button type="button" (click)="findContrato()" class="btn btn-primary">
@@ -59,6 +63,11 @@
     <div *ngIf="showDeleteMessage" class="alert alert-info alert-dismissible fade show" role="alert">
       <i class="fas fa-trash-alt"></i> Contrato eliminado correctamente!
       <button type="button" class="btn-close" (click)="showDeleteMessage = false"></button>
+    </div>
+    <!-- Advertencia de validación: el contrato debe ser 6 dígitos -->
+    <div *ngIf="showValidationMessage" class="alert alert-warning alert-dismissible fade show" role="alert">
+      <i class="fas fa-exclamation-triangle"></i> El número de contrato debe tener exactamente 6 dígitos.
+      <button type="button" class="btn-close" (click)="showValidationMessage = false"></button>
     </div>
     <!-- Mensaje de contrato duplicado -->
     <div *ngIf="showDuplicateMessage" class="alert alert-warning alert-dismissible fade show" role="alert">

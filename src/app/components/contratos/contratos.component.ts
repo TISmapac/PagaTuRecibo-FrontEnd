@@ -25,6 +25,7 @@ export class ContratosComponent implements OnInit {
   showDeleteMessage: boolean = false;
   showDuplicateMessage: boolean = false; // Nueva variable para contrato duplicado
   showNotFoundMessage: boolean = false; // Nueva variable para contrato no encontrado
+  showValidationMessage: boolean = false; // Advertencia: el contrato debe ser 6 dígitos
   errorMessage: string = 'El contrato ya se encuentra vinculado a su cuenta'; // Mensaje de error específico
   isLoading: boolean = true; // Estado de carga para mostrar el skeleton
   skeletonRows = Array(3); // Cantidad de filas skeleton a mostrar mientras carga
@@ -104,18 +105,31 @@ export class ContratosComponent implements OnInit {
     this.contrato = {} as Contrato;
     this.showNotFoundMessage = false;
     this.showDuplicateMessage = false;
+    this.showValidationMessage = false;
     this.errorMessage = '';
     this.inputContrato.nativeElement.focus();
   }
 
+  // Mantiene en el buscador solo dígitos y como máximo 6 (un número de contrato).
+  onContratoInput(event: Event){
+    const input = event.target as HTMLInputElement;
+    const soloDigitos = input.value.replace(/\D/g, '').slice(0, 6);
+    if (input.value !== soloDigitos) {
+      input.value = soloDigitos;
+    }
+  }
+
    findContrato(){
-    let contratoNumber = this.inputContrato.nativeElement.value;
-    if (!contratoNumber) {
-      alert('Por favor ingrese un número de contrato');
+    const contratoNumber = this.inputContrato.nativeElement.value.trim();
+
+    // El número de contrato debe ser exactamente 6 dígitos.
+    if (!/^\d{6}$/.test(contratoNumber)) {
+      this.showValidationMessage = true;
+      setTimeout(() => this.showValidationMessage = false, 5000);
       return;
     }
-    
-    this.contratoService.getContrato(Number(contratoNumber)).subscribe( 
+
+    this.contratoService.getContrato(Number(contratoNumber)).subscribe(
       (res: any) => {
         // Verificar si la respuesta contiene un mensaje de error del backend
         if (res.msg && res.msg.includes('No se encontró ningun contrato')) {

@@ -83,6 +83,47 @@
   flex-shrink: 0;
 }
 
+/* Sección de ayuda / soporte de la aplicación */
+.footer-help {
+  border-top: 1px solid #042f60;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+.footer-help-inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 0;
+}
+.footer-help-icon {
+  font-size: 1.75rem;
+  color: var(--brand-amber);
+  flex-shrink: 0;
+}
+.footer-help-title {
+  font-family: var(--brand-font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  margin: 0 0 2px;
+}
+.footer-help-text {
+  font-size: 0.875rem;
+  color: rgba(207, 250, 254, 0.8);
+  margin: 0 0 4px;
+}
+.footer-help-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--brand-amber);
+  text-decoration: none;
+}
+.footer-help-mail:hover {
+  color: #fcd34d;
+}
+
 /* Barra inferior */
 .footer-bottom {
   border-top: 1px solid #042f60; /* borde superior igual al del portal */
