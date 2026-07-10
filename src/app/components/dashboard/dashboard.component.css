@@ -20,7 +20,7 @@
 /* ---------- Navbar (estilo portal: blanco + borde ámbar + doble logo) ---------- */
 .brand-navbar {
     background-color: #ffffff;
-    border-bottom: 2px solid rgba(245, 158, 11, 0.7); /* ámbar */
+    border-bottom: 2px solid rgba(192, 160, 98, 0.7); /* Dorado Carmen institucional */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 

@@ -33,7 +33,7 @@
   text-decoration: none;
 }
 .footer-social:hover {
-  color: #fcd34d;
+  color: #dac792;
 }
 
 /* Títulos de columna */
@@ -121,7 +121,7 @@
   text-decoration: none;
 }
 .footer-help-mail:hover {
-  color: #fcd34d;
+  color: #dac792;
 }
 
 /* Barra inferior */
@@ -142,7 +142,7 @@
   text-decoration: none;
 }
 .footer-back:hover {
-  color: #fcd34d;
+  color: #dac792;
 }
 .footer-carmen {
   display: inline-flex;
