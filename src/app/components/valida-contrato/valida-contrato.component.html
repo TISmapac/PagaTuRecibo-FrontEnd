@@ -14,11 +14,12 @@
             <h2 class="valida-title">&nbsp;Ingresa tu número de contrato&nbsp;</h2>
 
             <div class="valida-buscador">
-                <input class="form-control text-center" placeholder="Ingrese los 6 dígitos del contrato" id="contratoId" type="number" min="0"
-                    [(ngModel)]="contratoId" name="contratoId" (keyup.enter)="contratoId && getContrato()"/>
+                <input class="form-control text-center" placeholder="Ingrese los 6 dígitos del contrato" id="contratoId"
+                    type="text" inputmode="numeric" maxlength="6" pattern="\d{6}"
+                    [(ngModel)]="contratoId" name="contratoId" (input)="onContratoInput($event)" (keyup.enter)="buscarContrato()"/>
 
                 <div class="valida-acciones">
-                    <button type="button" id="btnContrato" (click)="getContrato()" [disabled]="!contratoId" class="btn btn-primary">
+                    <button type="button" id="btnContrato" (click)="buscarContrato()" [disabled]="!contratoId" class="btn btn-primary">
                         <span *ngIf="isLoading$ | async" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         <i class="fas fa-search"></i>&nbsp;Buscar
                     </button>

@@ -56,7 +56,7 @@ export class ValidaContratoComponent implements OnInit {
   is$ = this.spinnerService.isLoadingPago$
 
   contratoParam !: number;
-  contratoId: number | null = null;
+  contratoId: string = '';
 
   constructor(
     private contratoService: ContratoService,
@@ -96,7 +96,7 @@ export class ValidaContratoComponent implements OnInit {
     } else {
 
       //Este es el camino cuando viene desde mis contratos
-      this.contratoId = Number(this.contratoParam);
+      this.contratoId = String(this.contratoParam);
       this.getContrato();
     }
 
@@ -113,9 +113,30 @@ export class ValidaContratoComponent implements OnInit {
 
   // Limpia el buscador y el resultado para consultar otro contrato.
   limpiar() {
-    this.contratoId = null;
+    this.contratoId = '';
     this.contrato = {} as Contrato;
     this.infoMessage = '';
+  }
+
+  // Mantiene en el buscador solo dígitos y como máximo 6 (un número de contrato).
+  onContratoInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const soloDigitos = input.value.replace(/\D/g, '').slice(0, 6);
+    if (input.value !== soloDigitos) {
+      input.value = soloDigitos;
+    }
+    this.contratoId = soloDigitos;
+  }
+
+  // Búsqueda manual: valida 6 dígitos antes de consultar.
+  // (El camino desde "Mis contratos" llama a getContrato() directo, sin este gate.)
+  buscarContrato() {
+    if (!/^\d{6}$/.test(this.contratoId)) {
+      this.infoMessage = 'El número de contrato debe tener exactamente 6 dígitos.';
+      setTimeout(() => this.infoMessage = '', 5000);
+      return;
+    }
+    this.getContrato();
   }
 
   getContrato() {
