@@ -171,6 +171,102 @@ a:hover {
   background-color: rgba(220, 53, 69, 0.1);
 }
 
+/* ===== Layout de autenticación compartido (login, registro, olvidé contraseña) ===== */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px 100px; /* espacio inferior para el footer fijo del login */
+}
+
+/* Fondo institucional difuminado + overlay oscuro */
+.auth-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("src/assets/img/pago_en_linea.webp") center center / cover no-repeat;
+  filter: blur(8px) brightness(0.85);
+  transform: scale(1.05);
+  z-index: -2;
+}
+.auth-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+/* Footer simple legible sobre el fondo oscuro */
+.auth-page .footer {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Tarjeta de dos paneles */
+.auth-card {
+  width: 900px;
+  max-width: 100%;
+  min-height: 550px;
+  display: flex;
+  overflow: hidden;
+  background-color: #fff;
+  color: #3c4257;
+  border-radius: var(--brand-radius);
+  box-shadow: 0 15px 35px 0 rgb(60 66 87 / 8%), 0 5px 15px 0 rgb(0 0 0 / 12%);
+}
+
+/* Panel de bienvenida (izquierda) */
+.auth-welcome {
+  width: 45%;
+  background: linear-gradient(135deg, #003a78 0%, #004a99 55%, #0066cc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #fff;
+}
+.auth-welcome .welcome-content { text-align: center; }
+.auth-welcome h2 { font-size: 32px; font-weight: bold; margin-bottom: 20px; line-height: 1.3; }
+.auth-welcome .welcome-text { font-size: 20px; font-weight: 500; margin: 0; }
+
+/* Logo blanco dentro del panel de bienvenida */
+.auth-logo {
+  background-image: url("src/assets/img/logo_smapac_blanco.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 170px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+/* Panel del formulario (derecha) */
+.auth-form {
+  width: 55%;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-form form { width: 100%; max-width: 350px; }
+.auth-form h3 { text-align: center; padding-bottom: 30px; font-weight: bold; font-size: 24px; }
+.auth-form input { margin-bottom: 20px; font-size: 14px; font-weight: 500; }
+.auth-form a { text-decoration: none; }
+.auth-form .titleInput { font-size: 14px; font-weight: 500; }
+.auth-form .register { margin-top: 20px; font-size: 13px; text-align: center; }
+.auth-form .error { margin-top: 10px; color: #cd3d64; font-size: 14px; font-weight: 500; }
+
+/* Responsivo: apila los paneles */
+@media (max-width: 768px) {
+  .auth-card { flex-direction: column; min-height: auto; }
+  .auth-welcome, .auth-form { width: 100%; }
+  .auth-welcome { padding: 30px 20px; }
+  .auth-welcome h2 { font-size: 24px; }
+  .auth-welcome .welcome-text { font-size: 16px; }
+  .auth-form { padding: 30px 24px; }
+}
+
 /* Estilos para el footer (si se usa globalmente).
    El rediseño completo a barra cyan-900 va en la Fase D; aquí solo
    se asegura legibilidad sobre el nuevo fondo claro. */
