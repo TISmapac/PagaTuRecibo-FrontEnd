@@ -49,7 +49,11 @@ export class CardPagoComponent implements OnInit {
       this.direccionP   = params.direccion;
       this.coloniaP     = params.colonia;
       this.adeudaP      = params.adeuda;
-      this.monto      = params.adeuda;
+      // El parámetro llega formateado desde la app ("$123.45"). El importe
+      // para mExpress debe ser numérico: si se envía con "$" (p. ej. al pagar
+      // antes de que responda getContrato, o si éste falla), el banco lo
+      // rechaza con "Campo importe inválido".
+      this.monto        = Number(String(params.adeuda).replace(/[^0-9.]/g, '')) || 0;
       this.medidorP     = params.medidor;
       this.giroP        = params.giro;
       this.estatusP     = params.estatus;
