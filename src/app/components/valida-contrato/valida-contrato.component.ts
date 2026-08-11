@@ -33,7 +33,6 @@ export class ValidaContratoComponent implements OnInit {
   referencia: any;
   signature: any;
   monto!: number;
-  monto_reconex !: number;
   idexpress = "2328";
   //idexpress = environment.idExpress;
 
@@ -41,7 +40,6 @@ export class ValidaContratoComponent implements OnInit {
   fechaVencimiento !: any;
   fechaSuspension !: String;
   vencido: boolean = false;
-  puedePagar: boolean = false;
 
   infoMessage: String = "";
 
@@ -147,20 +145,12 @@ export class ValidaContratoComponent implements OnInit {
 
       if (res.fecha_suspension) {
         this.fechaSuspension = this.formateaFechaSuspension(res.fecha_suspension.toString());
-
-        this.puedePagar = this.calculaFechaSuspension(this.fechaSuspension);
       }
 
       this.contrato = res;
       this.infoMessage = '';
 
       this.referencia = this.generateReferencia(this.contrato?.contrato, this.contrato?.flag_reconexion);
-
-      if (res.adeuda_reconex_total) {
-
-        this.monto_reconex = res.adeuda_reconex_total;
-
-      }
 
       if (this.contrato?.adeuda) {
 
@@ -173,17 +163,9 @@ export class ValidaContratoComponent implements OnInit {
 
       }
 
-      //Si existe reconexion
-      if (this.contrato?.adeuda_reconex_total) {
-
-        //Si existe Reconexion generamos signature de reconexion
-        this.generateSignature(this.referencia, this.contrato?.adeuda_reconex_total).then(res => {
-
-          this.signature = res;
-
-        });
-
-      }
+      // NOTA: se eliminó la generación de monto/firma para "adeudo + reconexión".
+      // Los contratos suspendidos NO pueden pagar en línea; deben acudir a
+      // oficinas (regla reforzada también en el backend).
 
       if (this.contrato['msg']) {
         this.infoMessage = this.contrato['msg'];
@@ -467,35 +449,5 @@ export class ValidaContratoComponent implements OnInit {
 
     return fecha;
   }
-
-  calculaFechaSuspension(fecha: String) {
-
-    let dia, mes, anio;
-    anio = fecha.substring(6, 10);
-    mes = fecha.substring(3, 5);
-    dia = fecha.substring(0, 2);
-
-    console.log(fecha);
-
-    fecha = anio + '-' + mes + '-' + dia
-
-    let fecha_date = new Date(fecha.toString());
-    let fecha_ingreso_admon = new Date('2021-11-02');
-    let aux = false;
-
-    if (fecha_date >= fecha_ingreso_admon) {
-
-      console.log('puede pagar');
-      console.log(fecha_date);
-      aux = true
-    } else {
-      aux = false;
-      console.log('no puede pagar');
-      console.log(fecha_date);
-    }
-
-    return aux;
-  }
-
 
 }

@@ -191,48 +191,18 @@
                     </div>
 
                     <br>
-                    <!--Si está suspendido-->
+                    <!--Si está suspendido: el pago en línea NO está permitido.
+                        El pago de adeudo + reconexión debe hacerse en oficinas
+                        (regla también aplicada en el backend).-->
                     <ng-template #suspendido>
-                        
-                        <!--Si Está suspendido pero puede pagar reconexion-->
-                        <div class="divCenter mt-5" *ngIf="contrato.flag_reconexion == 1 && contrato.multas == 10 && contrato.fecha_suspension != null && puedePagar == true; else msgMultas">
-                            
-                            <div>
-                                
-                                <form #form action="https://www.adquiramexico.com.mx:443/mExpress/pago/avanzado" method="post">
-                                    <input type="hidden" name="importe" value="{{ monto_reconex }}"/>                    
-                                    <input type="hidden" name="referencia" value="{{ referencia }}"/>                  
-                                    <input type="hidden" name="urlretorno" value="https://restserver-smapac.herokuapp.com/api/orders/respuesta.html"/>
-                                    <input type="hidden" name="idexpress" value="{{ idexpress }}"/>
-                                    <input type="hidden" name="financiamiento" value="0" />
-                                    <input type="hidden" name="plazos" value="" />
-                                    <input type="hidden" name="mediospago" value="110000" />
-                                    <input type="hidden" name="x" value="45" />
-                                    <input type="hidden" name="y" value="25" />
-                                    <input type="hidden" name="signature" value="{{ signature }}"/>
-                    
-                                    <button id="btnGenPago" style="font-weight: 600" class="btn btn-guinda" (click)="form.submit()">
-                                        <span class="btnLabel">&nbsp;Pagar Total</span>
-                                    </button>
-                    
-                                </form>
-    
-                            </div>
-    
+                        <div *ngIf="contrato.estatus == 'Suspendido' " class="msgInfo p-4">
+                            No es posible realizar el pago ni descargar el recibo de este
+                            contrato por este medio, debe presentarse en las instalaciones
+                            del
+                            <span style="color: #3c4257; font-weight: bolder">SMAPAC</span>
+                            para el pago de
+                            <span class="error" style="font-weight: bolder">Reconexión</span> correspondiente y otras aclaraciones.
                         </div>
-    <br>
-                        <!--Si está suspendido pero no puede pagar (Else de Arriba)-->
-                        <ng-template #msgMultas>
-                            <div *ngIf="contrato.estatus == 'Suspendido' " class="msgInfo p-4">
-                                No es posible realizar el pago ni descargar el recibo de este
-                                contrato por este medio, debe presentarse en las instalaciones
-                                del
-                                <span style="color: #3c4257; font-weight: bolder">SMAPAC</span>
-                                para el pago de
-                                <span class="error" style="font-weight: bolder">Reconexión</span> correspondiente y otras aclaraciones.
-                            </div>
-                        </ng-template>
-    
                     </ng-template>
                      
                     <br><br>
