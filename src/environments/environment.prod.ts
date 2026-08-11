@@ -1,9 +1,5 @@
 export const environment = {
   production: true,
-  //apiUrl: 'http://3.142.42.242:3000/api/',
-
-  //Heroku de cuenta personal
-  //apiUrl: 'https://restserver-smapac.herokuapp.com/api/',
   apiUrl: 'https://smapac-pagoenlinea.herokuapp.com/api/',
   clientUrl: 'http://smapac-client.s3-website.us-east-2.amazonaws.com/',
   stripe_pk: 'pk_live_51Jl0zJF02eLzx8kbAHhZDYa8TKi4xC5hJ7yd3Z5EeIft4M17iJ5hwQH3Q7dRiFfoTRKCJ8oeREi0YhbjbfWZENxN003GThSiLl',  //Clave Smapac

@@ -82,8 +82,4 @@ export class LoginComponent implements OnInit {
 
   }
 
-  loginGoogle(){
-    console.log('Cupertino');
-  }
-
 }
