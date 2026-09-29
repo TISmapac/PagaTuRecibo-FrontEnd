@@ -53,7 +53,7 @@
                             </td>
                         </tr>
     
-                        <tr *ngIf="contrato.estatus == 'Suspendido' ">
+                        <tr *ngIf="fechaSuspension">
                             <td class="right titleInput">Fecha suspensión:</td>
                             <td>
                                 <span class="res">{{fechaSuspension}}</span>
@@ -129,7 +129,7 @@
                             </td>
                         </tr>
     
-                        <tr *ngIf="contrato.estatus == 'Suspendido' ">
+                        <tr *ngIf="contrato.bloqueado">
                             <td class="right titleInput">Adeudo:</td>
                             <td class="adeudo" style="text-align: right;">
                                 
@@ -142,7 +142,7 @@
                             </td>
                         </tr>
     
-                        <tr *ngIf="contrato.estatus == 'Suspendido' ">
+                        <tr *ngIf="contrato.bloqueado">
                             <td class="right titleInput">Reconexión:</td>
                             <td class="adeudo" style="text-align: right;">
                                 <div class="row">
@@ -154,7 +154,7 @@
                             </td>
                         </tr>
     
-                        <tr *ngIf="contrato.estatus == 'Suspendido' ">
+                        <tr *ngIf="contrato.bloqueado">
                             <td class="right titleInput">Total a pagar:</td>
                             <td class="adeudo">
                                 <div class="row">
@@ -169,7 +169,7 @@
                     </table>
     
                     <!--Si está activo-->
-                    <div *ngIf="contrato.estatus == 'Activo' && contrato.adeuda > 0 ; else suspendido" class="divCenter mt-5">
+                    <div *ngIf="!contrato.bloqueado && contrato.estatus == 'Activo' && contrato.adeuda > 0 ; else suspendido" class="divCenter mt-5">
     
                         <form #form action="https://www.adquiramexico.com.mx:443/mExpress/pago/avanzado" method="post">
                             <input type="hidden" name="importe" value="{{ monto }}" />
@@ -195,7 +195,7 @@
                         El pago de adeudo + reconexión debe hacerse en oficinas
                         (regla también aplicada en el backend).-->
                     <ng-template #suspendido>
-                        <div *ngIf="contrato.estatus == 'Suspendido' " class="msgInfo p-4">
+                        <div *ngIf="contrato.bloqueado" class="msgInfo p-4">
                             No es posible realizar el pago ni descargar el recibo de este
                             contrato por este medio, debe presentarse en las instalaciones
                             del

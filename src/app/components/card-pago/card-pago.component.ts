@@ -32,6 +32,10 @@ export class CardPagoComponent implements OnInit {
   reconexion: number = 0;
   adeudaReconexTotal: number = 0;
   flagReconexion: number = 0;
+  // El backend marca los contratos que no pueden pagar en línea. Es la fuente
+  // autoritativa: el estatus que llega por parámetro desde la app puede estar
+  // desactualizado.
+  bloqueado: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -89,6 +93,13 @@ export class CardPagoComponent implements OnInit {
     this.reconexion = res.reconexion || 0;
     this.adeudaReconexTotal = res.adeuda_reconex_total || 0;
     this.flagReconexion = res.flag_reconexion || 0;
+
+    // El estatus de la API manda sobre el que llegó por parámetro.
+    this.bloqueado = res.bloqueado === true;
+
+    if (res.estatus) {
+      this.estatusP = res.estatus;
+    }
 
   });
   }

@@ -60,8 +60,8 @@
         <div class="res mb-5">
           {{ fechaVencP }}
         </div>
-        <!--Mostrar el mensaje de advertencia si el estatus es "Suspendido"-->
-        <div *ngIf="estatusP == 'Suspendido'" class="alert alert-warning mt-4">
+        <!--Mensaje de advertencia si el contrato no puede pagar en línea-->
+        <div *ngIf="bloqueado || estatusP == 'Suspendido'" class="alert alert-warning mt-4">
           No es posible realizar el pago ni descargar el recibo de este contrato
           por este medio. Debe presentarse en las oficinas de la institución
           para regularizar su servicio y cubrir los cargos correspondientes.
@@ -89,6 +89,7 @@
 
           <button
             *ngIf="
+              !bloqueado &&
               monto > 0 &&
               adeudaP != '$0.00' &&
               referencia != null &&

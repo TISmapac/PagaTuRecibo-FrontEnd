@@ -24,4 +24,7 @@ export interface Contrato{
     adeuda_padron:          number;
     fecha_vencimiento:      String;
     mes_facturado:          String;
+    // El backend marca así los contratos que no pueden pagar en línea
+    // (suspendidos o en proceso de reconexión).
+    bloqueado?:             boolean;
 }
