@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   isSubmitting = false;
   errorMessage = '';
+  // Permite ver la contraseña escrita para corroborarla antes de entrar.
+  mostrarPassword = false;
 
   user = {
     email: '',

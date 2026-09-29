@@ -275,6 +275,24 @@ a:hover {
 .auth-form form { width: 100%; max-width: 350px; }
 .auth-form h3 { text-align: center; padding-bottom: 30px; font-weight: bold; font-size: 24px; }
 .auth-form input { margin-bottom: 20px; font-size: 14px; font-weight: 500; }
+
+/* Campo de contraseña con botón para mostrarla/ocultarla */
+.auth-password { position: relative; margin-bottom: 20px; }
+.auth-form .auth-password input { margin-bottom: 0; padding-right: 3rem; }
+.auth-password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--brand-muted);
+  padding: 6px 10px;
+  border-radius: var(--brand-radius);
+  line-height: 1;
+}
+.auth-password-toggle:hover { color: var(--brand-blue); }
+.auth-password-toggle:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 1px; }
 .auth-form a { text-decoration: none; }
 .auth-form .titleInput { font-size: 14px; font-weight: 500; }
 .auth-form .register { margin-top: 20px; font-size: 13px; text-align: center; }
