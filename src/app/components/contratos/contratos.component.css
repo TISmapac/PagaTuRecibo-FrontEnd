@@ -106,29 +106,9 @@
   box-shadow: none;
 }
 
-/* ---------- Skeleton ---------- */
-@keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-}
-
-.skeleton-loader {
-  display: block;
-  width: 100%;
-  height: 18px;
-  background: linear-gradient(to right, #e9ecef 8%, #dee2e6 18%, #e9ecef 33%);
-  background-size: 2000px 100%;
-  animation: shimmer 1.6s infinite ease-in-out;
-  border-radius: 6px;
-}
-
-.skeleton-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-
+/* ---------- Skeleton ----------
+   Las primitivas (.skeleton-loader, .skeleton-circle, @keyframes shimmer)
+   viven en src/styles.css; aquí solo lo específico de esta tabla. */
 .skeleton-row:hover {
   background-color: transparent !important;
 }

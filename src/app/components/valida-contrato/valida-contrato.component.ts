@@ -9,6 +9,7 @@ import { LoadingService } from '../../services/loading.service';
 import { ReciboService } from '../../services/recibo.service';
 import { AuthService } from '../../services/auth.service';
 import { Contrato } from '../../models/contrato';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-valida-contrato',
@@ -41,11 +42,18 @@ export class ValidaContratoComponent implements OnInit {
   fechaSuspension !: String;
   vencido: boolean = false;
 
-  infoMessage: String = "";
   // Bloquea el botón de recibo mientras se genera (tarda unos segundos) para
   // evitar que el usuario dispare la solicitud dos veces.
   descargandoRecibo: boolean = false;
 
+  // Skeleton mientras se consulta el contrato.
+  cargandoContrato: boolean = false;
+  skeletonFilas = Array(9);
+  // Consulta en curso: se cancela si se inicia otra o se limpia, para que una
+  // respuesta vieja no sobrescriba el resultado de la búsqueda más reciente.
+  private consultaSub?: Subscription;
+
+  infoMessage: String = "";
 
   user = {
     email: '',
@@ -54,7 +62,6 @@ export class ValidaContratoComponent implements OnInit {
 
   isLoading$ = this.spinnerService.isLoading$;
   isLoadingReverse$ = this.spinnerService.isLoadingReverse$;
-  isLoadingRecibo$ = this.spinnerService.isLoadingRecibo$;
   is$ = this.spinnerService.isLoadingPago$
 
   contratoParam !: number;
@@ -115,6 +122,9 @@ export class ValidaContratoComponent implements OnInit {
 
   // Limpia el buscador y el resultado para consultar otro contrato.
   limpiar() {
+    this.consultaSub?.unsubscribe();
+    this.cargandoContrato = false;
+    this.fechaSuspension = '';
     this.contratoId = '';
     this.contrato = {} as Contrato;
     this.infoMessage = '';
@@ -145,7 +155,15 @@ export class ValidaContratoComponent implements OnInit {
 
     let id = Number(this.contratoId);
 
-    this.contratoService.getContrato(id).subscribe(res => {
+    // Reinicia el estado de la consulta anterior y muestra el skeleton.
+    this.consultaSub?.unsubscribe();
+    this.cargandoContrato = true;
+    this.infoMessage = '';
+    this.fechaSuspension = '';
+
+    this.consultaSub = this.contratoService.getContrato(id).subscribe({ next: res => {
+
+      this.cargandoContrato = false;
 
       if (res.fecha_suspension) {
         this.fechaSuspension = this.formateaFechaSuspension(res.fecha_suspension.toString());
@@ -176,7 +194,12 @@ export class ValidaContratoComponent implements OnInit {
 
       }
 
-    })
+    },
+    error: () => {
+      // Sin esto, un fallo de red dejaría el skeleton cargando indefinidamente.
+      this.cargandoContrato = false;
+      this.infoMessage = 'No fue posible consultar el contrato. Intente nuevamente.';
+    }});
   }
 
   generateReferencia(contrato: number, flag_reconex: number) {

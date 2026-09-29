@@ -30,8 +30,25 @@
             </div>
         </ng-container>
 
-        <div class="hijo mt-4 resultado-card" *ngIf="contrato?.contrato">
-        
+        <!-- Skeleton mientras se consulta el contrato (imita la tarjeta de resultado) -->
+        <div class="hijo mt-4 resultado-card" *ngIf="cargandoContrato" aria-busy="true" aria-label="Cargando datos del contrato">
+            <div class="row">
+                <div class="col">
+                    <table class="tableRes skeleton-tabla" style="width: 95%;">
+                        <tr *ngFor="let fila of skeletonFilas">
+                            <td class="right"><span class="skeleton-loader skeleton-etiqueta"></span></td>
+                            <td><span class="skeleton-loader skeleton-valor"></span></td>
+                        </tr>
+                    </table>
+                    <div class="divCenter mt-4">
+                        <span class="skeleton-loader skeleton-boton"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hijo mt-4 resultado-card" *ngIf="!cargandoContrato && contrato?.contrato">
+
             <div class="row">
                 
                 <div class="col">
@@ -234,47 +251,3 @@
 <br>
 
 
-<div *ngIf="isLoadingRecibo$ | async" class="layer"> 
-  <div class="wrap">
-    <div class="drop-outer">
-      <svg
-        class="drop"
-        viewBox="0 0 40 40"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="20" cy="20" r="20" />
-      </svg>
-    </div>
-    <div class="ripple ripple-1">
-      <svg
-        class="ripple-svg"
-        viewBox="0 0 60 60"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="30" cy="30" r="24" />
-      </svg>
-    </div>
-    <div class="ripple ripple-2">
-      <svg
-        class="ripple-svg"
-        viewBox="0 0 60 60"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="30" cy="30" r="24" />
-      </svg>
-    </div>
-    <div class="ripple ripple-3">
-      <svg
-        class="ripple-svg"
-        viewBox="0 0 60 60"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="30" cy="30" r="24" />
-      </svg>
-    </div>
-  </div>
-</div>

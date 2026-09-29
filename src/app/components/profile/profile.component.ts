@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
   editing = false;
 
   isLoadingName$ = this.spinnerService.isLoadingName$;
-  //isLoadingRecibo$ = this.spinnerService.isLoadingRecibo$;
 
   constructor(
     private userService: UserService,

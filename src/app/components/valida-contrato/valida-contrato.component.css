@@ -160,6 +160,28 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom: 12px;
 }
 
+/* Skeleton de la tarjeta de resultado (primitivas en src/styles.css) */
+.skeleton-tabla td{
+    padding: 9px 10px;
+}
+
+.skeleton-etiqueta{
+    width: 55%;
+    height: 14px;
+    margin-left: auto; /* alineada a la derecha, como las etiquetas reales */
+}
+
+/* Anchos variados para que no parezcan barras idénticas */
+.skeleton-tabla tr:nth-child(3n+1) .skeleton-valor{ width: 45%; }
+.skeleton-tabla tr:nth-child(3n+2) .skeleton-valor{ width: 75%; }
+.skeleton-tabla tr:nth-child(3n) .skeleton-valor{ width: 60%; }
+
+.skeleton-boton{
+    width: 160px;
+    height: 38px;
+    border-radius: var(--brand-radius);
+}
+
 /* Resultado de la consulta: ya queda contenido por el .main-card,
    por eso no lleva fondo ni sombra propios */
 .resultado-card{
@@ -541,149 +563,3 @@ animation: lds-hourglass 1.2s infinite;
 }
 }
 
-  /*Animación gotita loading-recibo*/
-
-  .layer{
-      position: fixed;
-      background-color: #0d0d14;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /* IE 8 */ filter: alpha(opacity=80); /* IE 5-7 */ -moz-opacity: 0.8; /* Netscape */ -khtml-opacity: 0.8; /* Safari 1.x */ opacity: 0.8;
-  }
-  
-  .wrap {
-    position: absolute;
-    height: 200px;
-    left: 50%;
-    margin-left: -50px;
-    top: 40%;
-    margin-top: -100px;
-  }
-  
-  .drop {
-    width: 40px;
-    height: 40px;
-    left: 50%;
-    margin-left: -20px;
-    position: absolute;
-    animation: drop 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s infinite;
-  }
-  
-  .drop circle {
-    fill: #007bff;
-  }
-  
-  .drop-outer {
-    position: absolute;
-    box-sizing: border-box;
-    /* border: 1px solid #333; */
-    width: 100px;
-    height: 200px;
-    overflow: hidden;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-    background-clip: padding-box;
-  }
-  
-  .ripple {
-    position: absolute;
-    box-sizing: border-box;
-    width: 240px;
-    height: 240px;
-    top: 68px;
-    left: -70px;
-    perspective: 100;
-    transform: rotateX(65deg);
-  }
-  
-  .ripple .ripple-svg {
-    position: absolute;
-    width: 240px;
-    height: 240px;
-    opacity: 0;
-  }
-  
-  .ripple .ripple-svg circle {
-     fill: none;
-     stroke: #007bff;
-     stroke-width: 10px;
-     stroke-linejoin: inner;
-  }
-  
-  .ripple-1 {
-    animation: ripple 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s infinite;
-  }
-  
-  .ripple-1 .ripple-svg {
-    animation: fade-in-out 2s linear 0s infinite;
-  }
-  
-  .ripple-1 .ripple-svg circle {
-    animation: border 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s infinite;
-  }
-  
-  .ripple-2 {
-    animation: ripple 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s infinite;
-  }
-  
-  .ripple-2 .ripple-svg {
-    animation: fade-in-out 2s linear 0.2s infinite;
-  }
-  
-  .ripple-2 .ripple-svg circle {
-    animation: border 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s infinite;
-  }
-  
-  .ripple-3 {
-    animation: ripple 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s infinite;
-  }
-  
-  .ripple-3 .ripple-svg {
-    animation: fade-in-out 2s linear 0.35s infinite;
-  }
-  
-  .ripple-3 .ripple-svg circle {
-    animation: border 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s infinite;
-  }
-  
-  
-  
-  @keyframes drop {
-    0% {
-      transform: scale3d(0.01,0.01,0.01) translateY(0)
-    }
-    10% {
-      transform: scale3d(1,1,1) 
-    }
-    44% {
-      transform: scale3d(1,1,1) translateY(200px)
-    }
-    100% {
-      transform: scale3d(1,1,1) translateY(200px)
-    }
-  }
-  
-  @keyframes fade-in-out {
-    0% {opacity: 0}
-    42% {opacity: 0}
-    52% {opacity: 1}
-    65% {opacity: 1}
-    100% {opacity: 0}
-  }
-  
-  @keyframes ripple {
-    0% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
-    42% { transform: rotateX(65deg) scale3d(0.2, 0.2, 0.2) }
-    100% { transform: rotateX(65deg) scale3d(0.9, 0.9, 0.9) }
-  }
-  
-  @keyframes border {
-    0% { stroke-width: 6px }
-    42% { stroke-width: 6px }
-    100% {stroke-width: 2px }
-  }
-  
-  
