@@ -121,11 +121,10 @@
                         <tr *ngIf="contrato.estatus == 'Activo' ">
                             <td class="right titleInput">Recibo Dígital:</td>
                             <td>
-                                <span class="adeudo">
-                                    <a role="button" (click)="imprimeRecibo()">Descargar
-                                        <i class="fas fa-file-invoice"></i>
-                                    </a>
-                                </span>
+                                <button type="button" (click)="imprimeRecibo()" [disabled]="descargandoRecibo" class="btn btn-primary">
+                                    <span *ngIf="descargandoRecibo" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <i class="fas fa-file-invoice"></i>&nbsp;Descargar
+                                </button>
                             </td>
                         </tr>
     

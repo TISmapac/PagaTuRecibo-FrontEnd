@@ -42,6 +42,10 @@ export class ValidaContratoComponent implements OnInit {
   vencido: boolean = false;
 
   infoMessage: String = "";
+  // Bloquea el botón de recibo mientras se genera (tarda unos segundos) para
+  // evitar que el usuario dispare la solicitud dos veces.
+  descargandoRecibo: boolean = false;
+
 
   user = {
     email: '',
@@ -269,7 +273,26 @@ export class ValidaContratoComponent implements OnInit {
 
   imprimeRecibo() {
 
-    this.reciboService.downloadRecibo(this.contrato?.contrato);
+    // Evita la doble solicitud mientras el recibo se está generando.
+    if (this.descargandoRecibo) {
+      return;
+    }
+
+    this.descargandoRecibo = true;
+
+    this.reciboService.downloadRecibo(this.contrato?.contrato).subscribe({
+      next: (res) => {
+        const file = new Blob([res], { type: 'application/pdf' });
+        window.open(URL.createObjectURL(file));
+        this.descargandoRecibo = false;
+      },
+      error: () => {
+        // Si falla, se libera el botón para que pueda reintentar.
+        this.descargandoRecibo = false;
+        this.infoMessage = 'No fue posible descargar el recibo. Intente nuevamente.';
+        setTimeout(() => this.infoMessage = '', 5000);
+      }
+    });
 
   }
 

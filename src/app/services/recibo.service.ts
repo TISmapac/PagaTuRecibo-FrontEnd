@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,12 +14,10 @@ export class ReciboService {
     private http: HttpClient
   ) { }
 
-  downloadRecibo(contrato: number): any{
-    return this.http.post(this.URL_API+contrato, {flag:1}, {responseType: 'blob'}).subscribe(res => {
-        var file = new Blob([res], {type: 'application/pdf'});
-        var fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
-      });
+  // Devuelve el Observable (sin suscribirse aquí) para que el componente sepa
+  // cuándo termina la descarga y pueda bloquear el botón mientras tanto.
+  downloadRecibo(contrato: number): Observable<Blob> {
+    return this.http.post(this.URL_API+contrato, {flag:1}, {responseType: 'blob'});
   }
 
   dRecibo(contrato:number):any{
